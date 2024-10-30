@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { IoPersonCircle } from "react-icons/io5";
 import { BsCart4 } from "react-icons/bs";
 import { PiGreaterThanDuotone } from "react-icons/pi";
@@ -29,14 +28,14 @@ const Header = () => {
                                 <a href="#" className='block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 
                                 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white
                                 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white 
-                                md:dark:hover:bg-transparent'>Bebidas</a>
+                                md:dark:hover:bg-transparent'>Pedidos</a>
                                 <PiGreaterThanDuotone />
                             </li>
                             <li className='flex flex-row items-center px-2'>
                                 <a href="#" className='block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 
                                 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white
                                 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white 
-                                md:dark:hover:bg-transparent'>Comidas</a>
+                                md:dark:hover:bg-transparent'>Políticas</a>
                                 <PiGreaterThanDuotone />
                             </li>
                         </ul>
