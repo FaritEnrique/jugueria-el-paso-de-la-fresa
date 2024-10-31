@@ -11,9 +11,7 @@ import Footer from '../components/Footer';
 import Carrusel from '../util/Carrusel';
 
 const HomePage = () => {
-  return (
-    <main className='bg-gray-300'>
-        <Header />
+    return (
         <section className='place-items-center h-full p-6'>
             <section className='w-full mt-4 mb-4 bg-green-200 p-6 rounded-xl'>
                 <div>
@@ -210,9 +208,7 @@ const HomePage = () => {
                 </aside>
             </section>
         </section>
-        <Footer />
-    </main>
-  )
+    )
 }
 
 export default HomePage

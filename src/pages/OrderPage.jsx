@@ -1,8 +1,24 @@
 import React from 'react'
+import encabezado from '../images/Encabezado_Pedidos.png';
 
 const OrderPage = () => {
   return (
-    <div>OrderPage</div>
+    <>
+      <main className=' m-4'>
+        <section className='bg-red-300 h-[205px]'>
+          <div className='w-full h-auto mb-4 rounded-xl'>
+            <img className='rounded-xl border-2 border-black' src={encabezado} alt="" />
+          </div>
+          <div className='border-black w-full'>
+            <div>
+              
+            </div>
+
+          </div>
+        </section>
+      </main>
+    </>
+    
   )
 }
 

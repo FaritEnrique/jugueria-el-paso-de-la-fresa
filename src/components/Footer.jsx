@@ -3,10 +3,11 @@ import whatsapp from '../images/Whatsapp.png';
 import instagram from '../images/Instagram-Icon.png';
 import facebook from '../images/facebook.png';
 import youtube from '../images/youtube.png';
-import { SlLocationPin } from "react-icons/sl";
+
 import ubicacion from '../images/Ubicacion.png';
 import carta from '../images/Codigo_Qr.png';
-/* import { setOpen } from '../hooks/ModalUbicacion'; */
+// import { setOpen } from '../hooks/ModalUbicacion';
+import ModalUbicacion from './ModalUbicacion';
 
 const Footer = () => {
   return (
@@ -27,9 +28,7 @@ const Footer = () => {
                     </h3>
                     <div className='w-full flex gap-4 pt-2 pb-2 items-center justify-between'>
                         <p>Pulse ícono de ubicación</p>
-                        <button className='border-2 border-blue-300 p-2 h-fit' /* onClick={() => setOpen(true)} */>
-                            <SlLocationPin className='text-2xl' />
-                        </button>
+                        <ModalUbicacion />
                         <div className='w-28 ring-offset-2 ring-2 bg-red-300'>
                         <img src={ubicacion} alt="" />
                         </div>
