@@ -3,7 +3,6 @@ import whatsapp from '../images/Whatsapp.png';
 import instagram from '../images/Instagram-Icon.png';
 import facebook from '../images/facebook.png';
 import youtube from '../images/youtube.png';
-
 import ubicacion from '../images/Ubicacion.png';
 import carta from '../images/Codigo_Qr.png';
 // import { setOpen } from '../hooks/ModalUbicacion';

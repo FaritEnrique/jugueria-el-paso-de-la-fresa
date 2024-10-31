@@ -1,9 +1,8 @@
 import React from 'react'
 import { IoPersonCircle } from "react-icons/io5";
 import { BsCart4 } from "react-icons/bs";
-import { PiGreaterThanDuotone } from "react-icons/pi";
 import logoJugo from "../images/logo.png";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -26,7 +25,7 @@ const Header = () => {
                 </button>
                 <button className="text-3xl relative">
                     <BsCart4 />
-                    <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold
+                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold
                     text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2
                     dark:border-gray-900">0</div>
                 </button>

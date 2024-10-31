@@ -1,13 +1,6 @@
-import Header from '../components/Header'
-import juane from "../images/Juane.png";
-import heladoFresa from "../images/Helado_fresa.jpg";
-import sangucheChicharron from "../images/Sanguche_Chicharron.png";
-import tacachoCecina from "../images/tacacho_con_cecina.png";
-import infusiones from "../images/Infusiones.png";
 import criollosRegionales from "../images/Foto_Criollos_Regionales.png";
 import popularesJuane from "../images/Foto_Populares_Juane.png";
 import cremas from "../images/Cremas.png";
-import Footer from '../components/Footer';
 import Carrusel from '../util/Carrusel';
 
 const HomePage = () => {
@@ -201,11 +194,6 @@ const HomePage = () => {
                     </div>
                 </div>
 
-            </section>
-            <section>
-                <aside className='w-full'>
-                    
-                </aside>
             </section>
         </section>
     )
