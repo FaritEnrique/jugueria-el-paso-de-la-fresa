@@ -1,11 +1,9 @@
 import React from 'react'
-import whatsapp from '../images/Whatsapp.png';
 import instagram from '../images/Instagram-Icon.png';
 import facebook from '../images/facebook.png';
 import youtube from '../images/youtube.png';
 import ubicacion from '../images/Ubicacion.png';
 import carta from '../images/Codigo_Qr.png';
-// import { setOpen } from '../hooks/ModalUbicacion';
 import ModalUbicacion from './ModalUbicacion';
 
 const Footer = () => {
@@ -18,7 +16,7 @@ const Footer = () => {
                     <pre>Dirección: Yavarí / Condamine</pre>
                     <pre>Teléfono:  +51 xxxxxxxxxx</pre>
                     <button className='mt-3 px-3 bg-gray-200 border-2 border-black rounded-lg ring-offset-2 ring-2'>
-                        <a href="https://api.whatsApp.com/send?phone=+51900569806&text=Hola" target="_blank"><img src={whatsapp} alt=""/></a>
+                        <a href="https://api.whatsApp.com/send?phone=+51900569806&text=Hola" target="_blank"><img src='https://i.ibb.co/Nsh0zjN/WhatsApp.png' alt="" /></a>
                     </button>
                 </div>
                 <div className='bg-white p-4 rounded-xl w-1/3 justify-between'>
