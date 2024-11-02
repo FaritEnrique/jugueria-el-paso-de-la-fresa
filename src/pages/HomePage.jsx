@@ -2,6 +2,7 @@ import criollosRegionales from "../images/Foto_Criollos_Regionales.png";
 import popularesJuane from "../images/Foto_Populares_Juane.png";
 import cremas from "../images/Cremas.png";
 import Carrusel from '../util/Carrusel';
+import Counter from "../components/Counter";
 
 const HomePage = () => {
     return (
@@ -193,7 +194,6 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-
             </section>
         </section>
     )
