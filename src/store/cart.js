@@ -5,10 +5,10 @@ export const useCartStore = create(
         // Estado INICIAL
         cart: [],
 
-        // Actions
-        addToCart: (newProducts) => {
+        //Actions
+        pedir: (newProducts) => {
             // ¿Existe el nuevo producto en el carrito de compra?
-            const productInCartIndex = get().cart.findIndex(
+            const productsInCartIndex = get().cart.findIndex(
                 products => products.id === newProducts.id
             )
 
@@ -20,7 +20,7 @@ export const useCartStore = create(
                     if (products.id === newProducts.id) {
                         return {
                             ...products,
-                            quantity: products.quantity + 1
+                            cantidad: products.cantidad + 1
                         }
                     }
                     return products
@@ -33,10 +33,10 @@ export const useCartStore = create(
 
             // Esta línea se ejecuta cuando el producto es nuevo en el carrito de compras
             set(state => ({
-                cart: [...state.cart, { ...newProducts, quantity: 1 }]
+                cart: [...state.cart, { ...newProducts, cantidad: 1 }]
             }))
         },
-        removeFromCart: (id) => {
+        /* removeFromCart: (id) => {
             // DONE: remover el producto usando el id que tenemos en los parámetros de la función
             set(state => {
                 const newCart = state.cart.filter(products => products.id !== id)
@@ -47,6 +47,6 @@ export const useCartStore = create(
         cleanCart: () => {
             // DONE: limpiar el carrito de compras
             set(() => ({ cart: [] }))
-        }
+        } */
     })
 )

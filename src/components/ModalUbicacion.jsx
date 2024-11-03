@@ -16,7 +16,7 @@ const ModalUbicacion = () => {
 
         {open && (
             <>
-            <div className='w-5/12 fixed inset-0 rounded-xl p-4 backdrop-blur-sm justify-self-center bg-cyan-300'>
+            <div className='w-5/12 fixed inset-0 rounded-xl p-4 backdrop-blur-sm justify-self-center bg-cyan-200'>
                 <button className='flex px-3 mt-2 bg-red-500 items-center justify-self-end gap-2 
                         rounded-xl' onClick={()=>setOpen(false)}>
                     <p>

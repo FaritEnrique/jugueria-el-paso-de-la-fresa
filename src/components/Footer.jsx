@@ -39,7 +39,7 @@ const Footer = () => {
                         </h3>
                         <button className='border-2 bg-blue-900 h-fit rounded-lg p-2 mt-3 text-white'>
                             <a href="https://drive.google.com/file/d/1SMrx4P1qi1YavtFTZsAjfhV0K3jcUbtn/view?usp=drive_link/
-                                    view?usp=sharing">Descargar</a>
+                                    view?usp=sharing" target="_blank">Descargar</a>
                         </button>
                     </div>
                     <div className='w-44 justify-center'>

@@ -4,7 +4,7 @@ import { useCartStore } from "../store/cart"
 import Counter from "./Counter"
 
 const OrderList = () => {
-    const { addToCart } = useCartStore()
+    const { pedir } = useCartStore()
 
     const [products, setProducts] = useState([])
 
@@ -35,7 +35,7 @@ const OrderList = () => {
                                 </span>
                                 <button
                                     className="bg-blue-700 hover:bg-red-300 text-white ring-offset-2 ring-2 font-medium rounded-xl text-sm px-4 py-2"
-                                    onClick={() => addToCart(products)}>Pedir
+                                    onClick={() => pedir(products)}>Pedir
                                 </button>
                             </div>
                         </div>
