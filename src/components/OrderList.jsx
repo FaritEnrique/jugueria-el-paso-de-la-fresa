@@ -26,9 +26,9 @@ const OrderList = () => {
                             <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-justify">
                                 {products.nombre}
                             </h5>
-                            <div>
+                            {/* <div>
                                 <Counter />
-                            </div>
+                            </div> */}
                             <div className="flex flex-col justify-between md:flex-row gap-2 bg-gray-50 p-2 rounded-lg">
                                 <span className="text-xl font-bold">
                                     S/ {products.precio.toFixed(2)}
