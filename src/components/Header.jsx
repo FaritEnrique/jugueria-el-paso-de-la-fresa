@@ -9,7 +9,7 @@ import { BsTrash } from "react-icons/bs";
 
 
 const Header = () => {
-    const { cart } = useCartStore()
+    const { cart, removeFromCard, cleanCart } = useCartStore()
 
     const [open, setOpen] = useState(false)
 
@@ -24,10 +24,10 @@ const Header = () => {
                     <div>
                         <img src= {logoJugo} alt="" />
                     </div>
-                    <nav className='bg-gray-400 border-gray-200 dark:bg-gray-900 rounded-xl px-4 py-3'>
-                        <Link className='px-3 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/'>Home</Link>
-                        <Link className='px-3 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/order'>Pedidos</Link>
-                        <Link className='px-3 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/politicas'>Políticas</Link>
+                    <nav className='bg-gray-400 border-black rounded-xl px-4 py-3'>
+                        <Link className='px-4 py-1 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/'>Home</Link>
+                        <Link className='px-4 py-1 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/order'>Pedidos</Link>
+                        <Link className='px-4 py-1 ring-offset-2 ring-2 text-indigo-600 font-extrabold underline mx-2 rounded hover:bg-cyan-200' to='/politicas'>Políticas</Link>
                     
                     </nav>
                     <button className='flex items-center gap-2 bg-lime-400 px-2 border-red-500 ring-2 border-4 rounded-3xl'>
@@ -36,9 +36,8 @@ const Header = () => {
                     </button>
                     <button className="text-3xl relative" onClick={() => setOpen(!open)}>
                         <BsCart4 />
-                        <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold
-                        text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2
-                        dark:border-gray-900">{cart.length}</div>
+                        <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold
+                        text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2'>{cart.length}</div>
                     </button>
                     <div className={`${classSidebar} ${classShowCart}`}>
                             <div className='flex justify-between items-center'>
@@ -54,35 +53,47 @@ const Header = () => {
                             )}
 
                             {cart.length > 0 &&(
-                                <div className='border my-2 rounded-lg p-2'>
-                                    <table className="w-full text-sm text-left text-gray-500">
-                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
-                                            <tr>
-                                                <th className='px-6 py-3'>Descripción</th>
-                                                <th className='px-6 py-3'>Precio</th>
-                                                <th className='px-6 py-3'>Cant</th>
-                                                <th className='px-6 py-3'></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {cart && cart.map(products => 
-                                                <tr class="bg-white border-b">
-                                                    <td className="px-6 py-4">{products.nombre}</td>
-                                                    <td className="px-6 py-4 text-right">S/ {products.precio}</td>
-                                                    <td className="px-6 py-4 text-center">{products.cantidad}</td>
-                                                    <td className="px-6 py-4">
-                                                        <button><BsTrash className='text-red-500 text-center'/></button>
-                                                    </td>
+                                <>
+                                    <div className='py-2'>
+                                        <button className="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 
+                                        focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={cleanCart}>Limpiar Carrito</button>
+                                    </div>
+                                    <div className='border my-2 rounded-lg p-2'>
+                                        <table className="w-full text-sm text-left text-gray-500 border-separate table-fixed p-2 bg-slate-200">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
+                                                <tr>
+                                                    <th className='px-4 py-3 w-[45%] border-gray-600 border rounded-lg text-center'>Descripción</th>
+                                                    <th className='px-4 py-3 w-20 border-gray-600 border rounded-lg text-center'>Precio</th>
+                                                    <th className='px-4 py-3 w-20 border-gray-600 border rounded-lg text-center'>Cant</th>
+                                                    <th className='px-4 py-3'></th>
                                                 </tr>
-                                            )}
-                                        
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </thead>
+                                            <tbody>
+                                                {cart && cart.map(products => {
+                                                    return (
+                                                        <tr className='bg-white border-b' key={products.id}>
+                                                            <td className='px-4 py-2'>
+                                                                {products.nombre}
+                                                            </td>
+                                                            <td className='px-4 py-2 text-right'>S/ 
+                                                                {products.precio.toFixed(2)}
+                                                            </td>
+                                                            <td className="px-4 py-2 text-center">
+                                                                {products.cantidad}
+                                                            </td>
+                                                            <td className="px-4 py-2 text-center">
+                                                                <button onClick={() => removeFromCard(products.id)}>
+                                                                    <BsTrash size={20} className='text-red-600 text-center' />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </>
                             )}
-                            
-
-                        {/* {JSON.stringify(cart)} */}
                     </div>                    
                 </div>
             </header>
