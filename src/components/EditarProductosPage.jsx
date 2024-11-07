@@ -1,15 +1,23 @@
 import { data } from 'autoprefixer';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { FaRegWindowClose } from "react-icons/fa";
 import { PiNotMemberOfBold } from 'react-icons/pi';
-import { crearProducts } from '../services/products';
+import { editarProducto, obtenerProducto } from '../services/products';
 import { useParams } from 'react-router-dom';
 
 
 const EditarProductos = () => {
 
-    const { id } = useParams
+    const { id } = useParams()
+
+    useEffect(() => {
+        obtenerProducto(id)
+            .then(data => {
+                console.log(data)
+                setForm(data)
+            })
+    }, [id])
 
     const [form, setForm] = useState ({
         nombre: '',
@@ -25,13 +33,11 @@ const EditarProductos = () => {
 
     const handleSave = (event) => {
         event.preventDefault();
-        console.log('Guardando datos ...')
-        crearProducts (form)
+        editarProducto (form, id)
             .then(data => {
-                console.data()
+                console.log(data)
                 //Redirección a la lista de Productos
             })
-
     }
 
 
@@ -50,6 +56,7 @@ const EditarProductos = () => {
                             name='nombre'
                             required
                             onChange={handleChange}
+                            value={form.nombre}
                         />
                     </label>
                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
@@ -60,6 +67,7 @@ const EditarProductos = () => {
                                 name='precio'
                                 required
                                 onChange={handleChange}
+                                value={form.precio}
                             />
                     </label>
                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
@@ -70,6 +78,7 @@ const EditarProductos = () => {
                             name='foto'
                             required
                             onChange={handleChange}
+                            value={form.foto}
                         />
                     </label>
                     <div className='flex justify-center'>

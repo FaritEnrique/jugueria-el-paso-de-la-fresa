@@ -2,20 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { fetchUsuarios } from '../services/usuarios'
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
-import { useForm } from 'react-hook-form';
-import { fetchProducts } from '../services/products';
+import { eliminarProducto, fetchProducts } from '../services/products';
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalProductos from '../components/ModalProductos';
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 const AdminPage = () => {
-
-  const { register, formState: { errors } , handleSubmit } = useForm();
-  
-  const onSubmit = (data) => {
-    
-    console.log(JSON.stringify(data));
-  }
 
   const [usuarios, setUsuarios] = useState([])
 
@@ -30,6 +24,30 @@ const AdminPage = () => {
     fetchProducts()
         .then(data => setProducts(data))
   }, [])
+
+  const handleRemove = (id) => {
+    console.log(id)
+    Swal.fire({
+      title: "¿Estás Seguro?",
+      text: "¡No lo podrás revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¿Sí, Borrar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        eliminarProducto(id)
+          .then(() => {
+            
+            fetchProducts()
+              .then(data => setProducts(data))
+
+            toast.success('El producto ha sido eliminado')
+          })
+      }
+    }); 
+  }
 
   return (
     <>
@@ -118,13 +136,13 @@ const AdminPage = () => {
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
-                                <Link to={'/edit/product/${products.id}'} >
+                                <Link to={`/edit/product/${products.id}`} >
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                                 </Link>
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button onClick={() => handleRemove(products.id)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>

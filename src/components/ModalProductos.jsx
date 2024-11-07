@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaRegWindowClose } from "react-icons/fa";
 import swal from 'sweetalert';
-import { crearProducts } from '../services/products';
+import { crearProducto } from '../services/products';
 
 
 const ModalProductos = () => {
@@ -28,12 +28,11 @@ const ModalProductos = () => {
                 buttons: 'Aceptar',
                 timer: '5000'
         })
-        crearProducts (form)
+        crearProducto (form)
             .then(data => {
-                console.data()
+                console.log(data)
                 //Redirección a la lista de Productos
         })
-
     }
 
     /* const onSubmit = (data) => {

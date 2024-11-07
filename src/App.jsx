@@ -8,10 +8,13 @@ import LoginPage from './pages/LoginPage'
 import { Layout } from './components/Layout'
 import AdminPage from './pages/AdminPage'
 import EditarProductosPage from './components/EditarProductosPage'
+import { Toaster } from 'sonner'
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Toaster richColors position='top-center' />
+
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route path='/' element={<HomePage />} />
