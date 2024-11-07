@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { fetchProducts } from '../services/products';
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalProductos from '../components/ModalProductos';
+import { Link } from "react-router-dom";
 
 const AdminPage = () => {
 
@@ -31,7 +32,7 @@ const AdminPage = () => {
   }, [])
 
   return (
-    <body>
+    <>
         <section className='my-4 mx-6 py-4'>
             <h1 className='font-bold text-center text-3xl py-2 w-full bg-slate-100 border-black rounded-xl'>
                 GESTIÓN DE USUARIOS
@@ -58,19 +59,19 @@ const AdminPage = () => {
                     <tbody>
                       {usuarios.map(usuarios => {
                         return (
-                          <tr>
+                          <tr key={usuarios.id}>
                             <td className='border border-black px-2 text-center'>{usuarios.id}</td>
                             <td className='border border-black px-2'>{usuarios.nombres}</td>
                             <td className='border border-black px-2'>{usuarios.apellidos}</td>
                             <td className='border border-black px-2'>{usuarios.direccion}</td>
                             <td className='border border-black px-2'>{usuarios.nivel}</td>
-                            <td className='border border-black p-1 w-16'>
-                              <button className='px-3 py-2 border ring-white ring-2 rounded-xl mx-2 bg-slate-300 place-self-center'>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <FaPencil size={16} className='text-blue-500 text-center' />
                               </button>
                             </td>
-                            <td className='border border-black p-1 w-16'>
-                              <button className='px-3 py-2 border ring-white ring-2 rounded-xl mx-2 bg-slate-300 place-self-center'>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>
@@ -85,7 +86,7 @@ const AdminPage = () => {
         </section>
         <section className='my-4 mx-6 py-4'>
             <h1 className='font-bold text-center text-3xl py-2 w-full bg-slate-100 border-black rounded-xl'>
-                GESTIÓN DE PORDUCTOS
+                GESTIÓN DE PRODUCTOS
             </h1>
             <div className='my-4 py-4 border border-black rounded-xl bg-slate-400'>
               <div className='px-4 bg-slate-400-500'>
@@ -108,20 +109,22 @@ const AdminPage = () => {
                     <tbody>
                       {products.map(products => {
                         return (
-                          <tr>
-                            <td className='border border-black px-2'>{products.id}</td>
+                          <tr key={products.id}>
+                            <td className='border border-black px-2 text-center'>{products.id}</td>
                             <td className='border border-black px-2'>{products.nombre}</td>
                             <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td>
                             <td className='border border-black py-1'>
                               <img className='rounded-lg max-w-20 justify-self-center border border-black' src={products.foto} alt="" />
                             </td>
-                            <td className='border border-black p-1 w-16'>
-                            <button className='px-3 py-2 border ring-white ring-2 rounded-xl mx-2 bg-slate-300 place-self-center'>
-                              <FaPencil size={16} className='text-blue-500 text-center' />
-                            </button>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <Link to={'/edit/product/${products.id}'} >
+                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                                </Link>
+                              </button>
                             </td>
-                            <td className='border border-black p-1 w-16'>
-                              <button className='px-3 py-2 border ring-white ring-2 rounded-xl mx-2 bg-slate-300 place-self-center'>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>
@@ -134,7 +137,7 @@ const AdminPage = () => {
               </div>
             </div>
         </section>
-    </body>
+    </>
   )
 }
 

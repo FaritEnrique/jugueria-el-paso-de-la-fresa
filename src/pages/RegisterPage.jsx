@@ -1,5 +1,5 @@
 import { data } from 'autoprefixer';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const RegisterPage = () => {
@@ -9,6 +9,7 @@ const RegisterPage = () => {
   const onSubmit = (data) => {
     
     console.log(JSON.stringify(data));
+
   }
 
   return (
@@ -57,6 +58,7 @@ const RegisterPage = () => {
             <input type="submit" value='Enviar' className='ring-white ring-4 bg-slate-600 rounded-lg text-bold py-2 px-4 text-white hover:bg-blue-400' />
           </div>
         </form>
+
     </section>
   )
 }

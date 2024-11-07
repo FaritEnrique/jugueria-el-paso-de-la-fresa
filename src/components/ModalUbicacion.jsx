@@ -31,7 +31,7 @@ const ModalUbicacion = () => {
                     3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ea10773b698b0b%3A0x96cf508c8d37a5bc!2sYavari%20419%2C%20Iquitos%2016002!5e0!3m2!1ses
                     -419!2spe!4v1730155749176!5m2!1ses-419!2spe"></iframe>
                     </div>
-                    <div className='w-full border-2'>
+                    <div className='ring-slate-400 ring-2'>
                         <img className='w-full' src={esquina} alt="" />
                     </div>
                 </div>

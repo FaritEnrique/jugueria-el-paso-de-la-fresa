@@ -53,9 +53,6 @@ const LoginPage = () => {
             type="submit" 
             value='Acceder' 
           />
-
-
-          <pre>{JSON.stringify(form, null, 2)}</pre>
         </form>
       </div>
       
