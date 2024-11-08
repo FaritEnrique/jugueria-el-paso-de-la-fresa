@@ -1,8 +1,4 @@
-import { data } from 'autoprefixer';
 import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form';
-import { FaRegWindowClose } from "react-icons/fa";
-import { PiNotMemberOfBold } from 'react-icons/pi';
 import { editarProducto, obtenerProducto } from '../services/products';
 import { useParams } from 'react-router-dom';
 
