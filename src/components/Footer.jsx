@@ -10,29 +10,29 @@ const Footer = () => {
   return (
     <>
         <footer className='w-full bg-orange-400 p-2'>
-            <div className='flex p-4 gap-4 justify-between'>
-                <div className='bg-white p-4 rounded-xl w-1/3'>
+            <div className='flex flex-wrap p-4 gap-4 justify-between'>
+                <div className='bg-white p-4 rounded-xl w-full md:w-1/3 sm:w-1/2'>
                     <h3 className='font-bold'>Contáctanos</h3>
-                    <pre>Dirección: Yavarí / Condamine</pre>
-                    <pre>Teléfono:  +51 xxxxxxxxxx</pre>
+                    <p className='max-w-fit text-justify'>Dirección: Yavarí / Condamine</p>
+                    <p className=''>Teléfono:  +51 xxxxxxxxxx</p>
                     <button className='mt-3 px-3 bg-gray-200 border-2 border-black rounded-lg ring-offset-2 ring-2'>
                         <a href="https://api.whatsApp.com/send?phone=+51900569806&text=Hola" target="_blank"><img src='https://i.ibb.co/Nsh0zjN/WhatsApp.png' alt="" /></a>
                     </button>
                 </div>
-                <div className='bg-white p-4 rounded-xl w-1/3 justify-between'>
+                <div className='bg-white p-4 rounded-xl w-full md:w-1/3 sm:w-1/2 justify-between'>
                     <h3 className='font-bold text-xl'>
                         Ubíquenos
                     </h3>
                     <div className='w-full flex gap-4 pt-2 pb-2 items-center justify-between'>
                         <p>Pulse ícono de ubicación</p>
                         <ModalUbicacion />
-                        <div className='w-28 ring-offset-2 ring-2 bg-red-300'>
-                        <img src={ubicacion} alt="" />
+                        <div className='hidden md:block w-28 ring-offset-2 ring-2 bg-red-300'>
+                        <img src={ubicacion} alt="Figura de Ubicación" />
                         </div>
                     </div>
                     
                 </div>
-                <div className='flex bg-white pt-4 pb-2 pr-4 pl-6 rounded-xl w-1/3 place-content-between'>
+                <div className='flex bg-white pt-4 pb-2 pr-4 pl-6 rounded-xl w-full md:w-1/3 sm:w-1/2 place-content-between'>
                     <div className=''>
                         <h3 className='font-bold text-xl'>
                             Descargue la Carta
@@ -42,7 +42,7 @@ const Footer = () => {
                                     view?usp=sharing" target="_blank">Descargar</a>
                         </button>
                     </div>
-                    <div className='w-44 justify-center'>
+                    <div className='hidden md:block w-44 justify-center'>
                             <img src={carta} alt="" />
                     </div>
                 </div>
