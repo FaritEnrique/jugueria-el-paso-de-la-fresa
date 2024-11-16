@@ -57,7 +57,7 @@ const ModalProductos = () => {
             
             {open &&(
                 <>
-                    <div className= 'w-1/2 fixed inset-0 rounded-xl p-4 backdrop-blur-sm justify-self-center bg-cyan-100'>
+                    <div className= 'w-full fixed inset-0 rounded-xl p-4 backdrop-blur-sm justify-self-center bg-cyan-100 sm:w-3/4 md:w-3/4 lg:w-1/2'>
                         <button className='flex px-3 mt-2 ring-slate-300 ring-2 bg-red-500 items-center justify-self-end gap-2 
                             rounded-xl' onClick={()=>setOpen(false)}>
                             <p>

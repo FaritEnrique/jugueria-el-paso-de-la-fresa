@@ -39,7 +39,7 @@ const EditarProductos = () => {
 
     return (
         <div className='flex justify-center'>
-            <div className='w-1/2 bg-slate-400 py-4 px-6 rounded-xl my-4'>
+            <div className='w-full bg-slate-400 py-4 px-6 rounded-xl my-4 sm:w-3/4 md:w-3/4 lg:w-1/2'>
                 <div className='bg-white py-2'>
                     <h2 className='mb-2 font-bold text-center'>Editar Producto</h2>
                 </div>

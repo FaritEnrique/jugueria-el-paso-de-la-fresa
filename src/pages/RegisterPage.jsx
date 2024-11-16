@@ -12,7 +12,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <section className='container w-1/2 bg-green-100 mx-auto my-12 rounded-2xl p-6 shadow-2xl shadow-blue-400'>
+    <section className='container w-full bg-green-100 mx-auto my-12 rounded-2xl p-6 shadow-2xl shadow-blue-400 md:w-3/4 lg:w-1/2'>
         <h1 className='font-extrabold text-center p-4'>REGISTRO DE CLIENTES</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='border-2 border-black rounded-lg p-6'>
           <div className='w-full mb-3'>

@@ -26,7 +26,7 @@ const HomePage = () => {
             </section>
             <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mt-4 mb-4 py-6 px-2 w-full rounded-xl'>
                 <div>
-                    <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Bebidas</h2>
+                    <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Productos</h2>
                 </div>
                 <div className='w-full flex flex-wrap gap-4 pt-4 place-content-around'>
                     <div className='bg-pink-200 w-full rounded-xl p-3 content-center md:w-96 md:flex-grow'>
