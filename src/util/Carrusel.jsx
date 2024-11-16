@@ -46,12 +46,12 @@ const Carrusel = () => {
     
     return (
         <div className= 'bg-red-300 p-6 justify-items-center'>
-            <div className='bg-black p-2 w-[600px] rounded-xl mb-4'>
+            <div className='bg-black p-2 max-w-[640px] rounded-xl mb-4'>
                 <h2 className='font-bold text-xl text-center text-white'>Nuestros Productos</h2>
             </div>
-            <div className='max-w-[640px] h-[458px] w-full bg-white m-auto py-16 px-4 relative group'>
+            <div className='min-w-[350px] h-[458px] w-full bg-white m-auto py-16 px-4 relative group flex flex-col flex-grow md:w-[640px] md:h-full'>
                 <div style={{ backgroundImage: `url(${slides[currentIndex].url})` }} 
-                    className='w-full h-full bg-center rounded-2xl duration-500'>
+                    className='w-[350px] h-full bg-cover bg-center rounded-2xl duration-500 sm:w-[600px] sm:h-[458px]'>
                 </div>
                 <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] lef-5 text-2xl rounded-full 
                             p-2 bg-black/20 text-white cursor-pointer'>

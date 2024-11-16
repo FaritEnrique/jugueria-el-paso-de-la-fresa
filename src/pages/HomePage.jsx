@@ -24,7 +24,7 @@ const HomePage = () => {
             <section className='w-full p-2 mt-4 mb-4 rounded-xl place-items-center'>
                 <Carrusel />
             </section>
-            <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover mt-4 mb-4 p-6 w-full rounded-xl'>
+            <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mt-4 mb-4 py-6 px-2 w-full rounded-xl'>
                 <div>
                     <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Bebidas</h2>
                 </div>
@@ -47,9 +47,9 @@ const HomePage = () => {
                                         <tr>
                                             <td className='border border-black px-2 text-center'>01</td>
                                             <td className='border border-black px-2'>Crema Fresa</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 8.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 12.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 15.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/8.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/12.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/15.00</td>
                                         </tr>
                                     {/* ) */}
                                 {/* })} */}
@@ -98,9 +98,9 @@ const HomePage = () => {
                                         <tr>
                                             <td className='border border-black px-2 text-center'>01</td>
                                             <td className='border border-black px-2'>Crema Fresa</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 8.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 12.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 15.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/8.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/12.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/15.00</td>
                                         </tr>
                                     {/* ) */}
                                 {/* })} */}
@@ -135,7 +135,7 @@ const HomePage = () => {
                             <span>S/ 12.00, 18.00</span>
                         </div> */}                 
                     </div>
-                    <div className='hidden bg-green-200 w-full rounded-xl p-3 content-center'>
+                    {/* <div className='hidden bg-green-200 w-full rounded-xl p-3 content-center'>
                         <h3 className='font-bold'>TÉ CHINO</h3>
                         <div className='flex place-content-between'>
                             <p>Té Jazmín + Limón</p>
@@ -157,15 +157,33 @@ const HomePage = () => {
                             <p>Frappe + Frutas</p>
                             <span>S/ 18.00</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <section className='bg-orange-400 mt-4 mb-4 p-6 w-full rounded-xl'>
                 <div>
-                    <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Para Picar</h2>
+                    <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
                 </div>
-                <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className='w-full bg-yellow-100 p-4 flex justify-around gap-4'>
-                    <div style={{backgroundImage: 'url(https://i.ibb.co/nsP4vT0/Fondo-Criollos.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl text-black font-bold w-2/4'>
+                <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover">
+                    <div  className='grid grid-cols-2 md:grid-cols-4 gap-8 p-4'>
+                        <div className="w-full border-2 border-gray-200 rounded-lg min-h-80">
+                            <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-justify">
+                                Fresas Frescas x Kg
+                            </h5>
+                            <img
+                                className="rounded-lg w-[295px]"
+                                src= {criollosRegionales} alt="Foto de Platos Criollos y Regionales"/>
+                            <div className="px-5 pb-5 flex flex-col mt-2">
+                                <div className="flex flex-col justify-between md:flex-row gap-2 bg-gray-50 p-2 rounded-lg">
+                                    <span className="text-xl font-bold">
+                                        S/ 16.00
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                    {/* <div style={{backgroundImage: 'url(https://i.ibb.co/nsP4vT0/Fondo-Criollos.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl text-black font-bold w-2/4'>
                         <div className='bg-slate-500 bg-opacity-60 p-2'>
                             <h3 className='font-extrabold'>Sanguches Criollos</h3>
                             <div className='flex place-content-between'>
@@ -240,7 +258,7 @@ const HomePage = () => {
                         <div className='m-4 place-items-center'>
                             <img src= {popularesJuane} alt="Foto de Platos Criollos y Regionales" className='rounded-lg border-2'/>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </section>
