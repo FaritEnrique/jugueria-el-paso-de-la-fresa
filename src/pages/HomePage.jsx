@@ -28,10 +28,34 @@ const HomePage = () => {
                 <div>
                     <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Bebidas</h2>
                 </div>
-                <div className='w-full flex gap-4 pt-4 place-content-around'>
-                    <div className='bg-pink-200 w-96 rounded-xl p-3 content-center'>
-                        <h3 className='font-bold'>CREMA</h3>
-                        <div className='flex place-content-between'>
+                <div className='w-full flex flex-wrap gap-4 pt-4 place-content-around'>
+                    <div className='bg-pink-200 w-full rounded-xl p-3 content-center md:w-96 md:flex-grow'>
+                        <h3 className='font-bold text-center'>CREMA</h3>
+                        <table className='w-full bg-white'>
+                            <thead>
+                                <tr className=''>
+                                    <th className='w-10 border border-black'>Cod.</th>
+                                    <th className='w-40 border border-black'>Producto</th>
+                                    <th className='w-20 border border-black md:w-20'>Peq.</th>
+                                    <th className='w-20 border border-black md:w-20'>Med.</th>
+                                    <th className='w-20 border border-black md:w-20'>Grde.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* {usuarios.map(usuarios => { */}
+                                    {/* return ( */}
+                                        <tr>
+                                            <td className='border border-black px-2 text-center'>01</td>
+                                            <td className='border border-black px-2'>Crema Fresa</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 8.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 12.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 15.00</td>
+                                        </tr>
+                                    {/* ) */}
+                                {/* })} */}
+                            </tbody>
+                        </table>
+                        {/* <div className='flex place-content-between'>
                             <p>Fresa + Crema de Leche</p>
                             <span>S/ 8.00, 10.00, 15.00</span>
                         </div>
@@ -54,11 +78,35 @@ const HomePage = () => {
                         <div className='flex place-content-between'>
                             <p>Fresa Oreo + Crema <br /> de Leche</p>
                             <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
+                        </div> */}
                     </div>
-                    <div className='bg-sky-200 w-96 rounded-xl p-3 content-center'>
-                        <h3 className='font-bold'>FROZEN</h3>
-                        <div className='flex place-content-between'>
+                    <div className='bg-sky-200 w-full rounded-xl p-3 content-center md:w-96 md:flex-grow'>
+                        <h3 className='font-bold text-center'>FROZEN</h3>
+                        <table className='w-full bg-white'>
+                            <thead>
+                                <tr className=''>
+                                    <th className='w-10 border border-black'>Cod.</th>
+                                    <th className='w-40 border border-black'>Producto</th>
+                                    <th className='w-20 border border-black md:w-20'>Peq.</th>
+                                    <th className='w-20 border border-black md:w-20'>Med.</th>
+                                    <th className='w-20 border border-black md:w-20'>Grde.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* {usuarios.map(usuarios => { */}
+                                    {/* return ( */}
+                                        <tr>
+                                            <td className='border border-black px-2 text-center'>01</td>
+                                            <td className='border border-black px-2'>Crema Fresa</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 8.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 12.00</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/ 15.00</td>
+                                        </tr>
+                                    {/* ) */}
+                                {/* })} */}
+                            </tbody>
+                        </table>
+                        {/* <div className='flex place-content-between'>
                             <p>Frozen Limón Fresa</p>
                             <span>S/ 10.00, 15.00</span>
                         </div>
@@ -85,9 +133,9 @@ const HomePage = () => {
                         <div className='flex place-content-between'>
                             <p>Frozen de Coco</p>
                             <span>S/ 12.00, 18.00</span>
-                        </div>                    
+                        </div> */}                 
                     </div>
-                    <div className='bg-green-200 w-96 rounded-xl p-3 content-center'>
+                    <div className='hidden bg-green-200 w-full rounded-xl p-3 content-center'>
                         <h3 className='font-bold'>TÉ CHINO</h3>
                         <div className='flex place-content-between'>
                             <p>Té Jazmín + Limón</p>
