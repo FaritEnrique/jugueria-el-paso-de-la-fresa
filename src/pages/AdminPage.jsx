@@ -55,8 +55,8 @@ const AdminPage = () => {
             <h1 className='font-bold text-center text-3xl py-2 w-full bg-slate-100 border-black rounded-xl'>
                 GESTIÓN DE USUARIOS
             </h1>
-            <div className='my-4 py-4 border border-black rounded-xl bg-slate-400'>
-              <div className='px-4 bg-slate-400-500'>
+            <div className='my-2 py-4 border border-black rounded-xl bg-slate-400'>
+              <div className='bg-slate-400'>
                 <h2 className='font-bold text-center bg-white text-2xl'>
                   Usuarios Existentes
                 </h2>
@@ -68,8 +68,6 @@ const AdminPage = () => {
                         <th className='w-10 border border-black'>Id</th>
                         <th className='w-40 border border-black'>Nombres</th>
                         <th className='w-44 border border-black'>Apellidos</th>
-                        <th className='w-72 border border-black'>Dirección</th>
-                        <th className='w-[128px] border border-black'>Nivel</th>
                         <th className='w-16 border border-black'>Editar</th>
                         <th className='w-16 border border-black'>Borrar</th>
                       </tr>
@@ -81,8 +79,6 @@ const AdminPage = () => {
                             <td className='border border-black px-2 text-center'>{usuarios.id}</td>
                             <td className='border border-black px-2'>{usuarios.nombres}</td>
                             <td className='border border-black px-2'>{usuarios.apellidos}</td>
-                            <td className='border border-black px-2'>{usuarios.direccion}</td>
-                            <td className='border border-black px-2'>{usuarios.nivel}</td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <FaPencil size={16} className='text-blue-500 text-center' />
@@ -118,8 +114,8 @@ const AdminPage = () => {
                       <tr className=''>
                         <th className='w-10 border border-black'>Id</th>
                         <th className='border border-black'>Nombre</th>
-                        <th className='border border-black'>Precio</th>
-                        <th className='border border-black'>Foto</th>
+                        {/* <th className='border border-black'>Precio</th> */}
+                        <th className='hidden border border-black lg:block'>Foto</th>
                         <th className='border border-black'>Editar</th>
                         <th className='border border-black'>Borrar</th>
                       </tr>
@@ -130,8 +126,8 @@ const AdminPage = () => {
                           <tr key={products.id}>
                             <td className='border border-black px-2 text-center'>{products.id}</td>
                             <td className='border border-black px-2'>{products.nombre}</td>
-                            <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td>
-                            <td className='border border-black py-1'>
+                            {/* <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td> */}
+                            <td className='hidden border border-black py-1 lg:block'>
                               <img className='rounded-lg max-w-20 justify-self-center border border-black' src={products.foto} alt="" />
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
