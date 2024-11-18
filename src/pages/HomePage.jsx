@@ -24,6 +24,14 @@ const HomePage = () => {
             <section className='w-full p-2 mt-4 mb-4 rounded-xl place-items-center'>
                 <Carrusel />
             </section>
+            <section className="w-full p-2 mb-4 rounded-xl place-items-center">
+                <div className="bg-gray-300" >
+                    <img src="https://i.ibb.co/8sfdz5T/Propiedades-Fresa.png" alt="Propiedades de la Fresa" />
+                </div>
+                <div className="w-full p-2 mb-4 rounded-xl place-items-center">
+                    <img src="https://i.ibb.co/ydwtzVQ/Ubicar-Fresas.png" alt="Imagen sugerir encontrar fresas" />
+                </div>
+            </section>
             <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mt-4 mb-4 py-6 px-2 w-full rounded-xl'>
                 <div>
                     <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Productos</h2>
@@ -158,6 +166,11 @@ const HomePage = () => {
                             <span>S/ 18.00</span>
                         </div>
                     </div> */}
+                </div>
+            </section>
+            <section className="w-full">
+                <div className="bg-gray-300 flex">
+                    <img className="flex-grow" src="https://i.ibb.co/k5HY5K8/VENTA-DE-FRESA.png" alt="Banner de Venta de Fresas" />
                 </div>
             </section>
             <section className='bg-orange-400 mt-4 mb-4 p-6 w-full rounded-xl'>
