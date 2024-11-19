@@ -1,25 +1,52 @@
-import React from 'react'
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
 export const usePasoFresa = () => {
-    const reference = colecction(db, 'productCrema')
+    const refCrema = collection(db, 'productCrema')
 
-    const fetchproductCrema = async () => {
-        const q = query(reference)
-        const data = await getDocs(q)
-        const results = []
-        data.forEach(doc => {
+    const fetchProductCrema = async () => {
+        const qCrema = query(refCrema)
+        const dataCrema = await getDocs(qCrema)
+        const resultsCrema = []
+        dataCrema.forEach(doc => {
             console.log(doc.id, doc.data())
-            results.push({
+            resultsCrema.push({
                 docId: doc.id,
                 ...doc.data() // Representa el documento actual
             })
         })
+        return resultsCrema
+    }
+
+    const crearCrema = async (crema) => {
+        const newCrema = {
+            codigo: crema.codigo,
+            name: crema.name,
+            priceSmall: crema.priceSmall,
+            priceMedium: crema.priceMedium,
+            priceBig: crema.priceBig,
+            photo: crema.photo
+        }
+        const responseCrema = await addDoc(refCrema, newCrema)
+
+        return {
+            id: responseCrema.id,
+            newCrema
+        }
+    }
+
+    const removeCrema = async (id) => {
+        const documentCrema = doc (db, 'productCrema', id)
+
+        const responseRemoveCrema = await deleteDoc(documentCrema)
+
+        return responseRemoveCrema
     }
 
     return {
-        fetchproductCrema
+        fetchProductCrema,
+        crearCrema,
+        removeCrema
     }
 
 }

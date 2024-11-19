@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
 import { FaRegWindowClose } from "react-icons/fa";
 import swal from 'sweetalert';
-import { crearProducto } from '../services/products';
-
+import usePasoFresa from '../hooks/usePasoFresa'; 
+import { useNavigate } from 'react-router-dom';
 
 const ModalProductos = () => {
 
+    const { crearCrema } = usePasoFresa()
+
+    const navigate = useNavigate()
+
     const [form, setForm] = useState ({
-        nombre: '',
-        precio: '',
-        foto: ''
+        codigo: '',
+        name: '',
+        priceSmall: '',
+        priceMedium: '',
+        priceBig: '',
+        photo: ''
     })
 
     const handleChange = (event) => {
@@ -18,9 +25,25 @@ const ModalProductos = () => {
         setForm ({ ...form, [name]: value })
     }
 
-    const handleSave = (event) => {
+    const handleSave = async (event) => {
         event.preventDefault();
+
+        const respCrearCrema = await crearCrema(form)
+
+        if (respCrearCrema.id) {
+            setForm({
+                codigo: '',
+                name: '',
+                priceSmall: '',
+                priceMedium: '',
+                priceBig: '',
+                photo: ''
+            })
+            navigate('/admin')
+        }
+
         console.log('Guardando datos ...')
+        crearCrema
         swal({
             title: 'Buen Trabajo',
                 text: 'El registro de un Nuevo Producto, se realizó con éxito',
@@ -28,23 +51,7 @@ const ModalProductos = () => {
                 buttons: 'Aceptar',
                 timer: '5000'
         })
-        crearProducto (form)
-            .then(data => {
-                console.log(data)
-                //Redirección a la lista de Productos
-        })
     }
-
-    /* const onSubmit = (data) => {
-        console.log(JSON.stringify(data))
-        swal({
-            title: 'Buen Trabajo',
-            text: 'El registro de un Nuevo Producto, se realizó con éxito',
-            icon: 'success',
-            buttons: 'Aceptar',
-            timer: '5000'
-        })
-    } */
 
     const [open, setOpen] = useState(false);
 
@@ -71,23 +78,58 @@ const ModalProductos = () => {
                                     <h2 className='mb-2 font-bold text-center'>Registre Nuevo Producto</h2>
                                     <p className='px-4 text-justify'>Ingrese todos los campos para un registro satisfatoriio</p>
                                 </div>
-                                <form onSubmit={handleSave} className='mt-4 p-2 w-full bg-black rounded-xl'>
+                                <form onSubmit={handleSave} className='mt-4 p-2 w-full bg-black max-h-[440px] rounded-xl overflow-y-scroll'>
                                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
-                                        <span className='font-bold'>Nombre</span>
+                                        <span className='font-bold'>Codigo</span>
                                         <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
                                             type="text" 
-                                            placeholder='Ejem. Helado de ...' 
-                                            name='nombre'
+                                            placeholder='Ejem. Para cremas 1.1, 1.2 ...' 
+                                            name='codigo'
+                                            value={form.codigo}
                                             required
                                             onChange={handleChange}
                                         />
                                     </label>
                                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
-                                        <span className='font-bold'>precio</span>
+                                        <span className='font-bold'>Nombre</span>
+                                        <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
+                                            type="text" 
+                                            placeholder='Ejem. Crema de ...' 
+                                            name='name'
+                                            value={form.name}
+                                            required
+                                            onChange={handleChange}
+                                        />
+                                    </label>
+                                    <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
+                                        <span className='font-bold'>Precio Pequeño</span>
                                         <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
                                             type="number" 
                                             placeholder='Ingrese Precio (2 decimales)' 
-                                            name='precio'
+                                            name='priceSmall'
+                                            value={form.priceSmall}
+                                            required
+                                            onChange={handleChange}
+                                        />
+                                    </label>
+                                    <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
+                                        <span className='font-bold'>Precio Mediano</span>
+                                        <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
+                                            type="number" 
+                                            placeholder='Ingrese Precio (2 decimales)' 
+                                            name='priceMedium'
+                                            value={form.priceMedium}
+                                            required
+                                            onChange={handleChange}
+                                        />
+                                    </label>
+                                    <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
+                                        <span className='font-bold'>Precio Grande</span>
+                                        <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
+                                            type="number" 
+                                            placeholder='Ingrese Precio (2 decimales)' 
+                                            name='priceBig'
+                                            value={form.priceBig}
                                             required
                                             onChange={handleChange}
                                         />
@@ -97,7 +139,8 @@ const ModalProductos = () => {
                                         <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
                                             type="url" 
                                             placeholder='Ingrese url de Foto' 
-                                            name='foto'
+                                            name='photo'
+                                            value={form.photo}
                                             required
                                             onChange={handleChange}
                                         />

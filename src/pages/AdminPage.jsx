@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { fetchUsuarios } from '../services/usuarios'
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
-import { eliminarProducto, fetchProducts } from '../services/products';
+import usePasoFresa from "../hooks/usePasoFresa";
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalProductos from '../components/ModalProductos';
 import { Link } from "react-router-dom";
@@ -18,15 +18,21 @@ const AdminPage = () => {
         .then(data => setUsuarios(data))
   }, [])
 
-  const [products, setProducts] = useState ([])
+  const { fetchProductCrema, removeCrema } = usePasoFresa()
 
+  const [porductCrema, setProductCrema] = useState([])
+  
   useEffect(() => {
-    fetchProducts()
-        .then(data => setProducts(data))
+    fetchProductCrema()
+      .then(data => setProductCrema(data))
   }, [])
 
-  const handleRemove = (id) => {
+
+  const handleRemoveCrema = async (id) => {
     console.log(id)
+
+    await removeCrema(id)
+    
     Swal.fire({
       title: "¿Estás Seguro?",
       text: "¡No lo podrás revertir!",
@@ -46,7 +52,11 @@ const AdminPage = () => {
             toast.success('El producto ha sido eliminado')
           })
       }
-    }); 
+    });
+
+    fetchProductCrema()
+      .then(data => setProductCrema(data))
+
   }
 
   return (
@@ -112,7 +122,7 @@ const AdminPage = () => {
                   <table className='w-full'>
                     <thead>
                       <tr className=''>
-                        <th className='w-10 border border-black'>Id</th>
+                        <th className='w-10 border border-black'>Cod</th>
                         <th className='border border-black'>Nombre</th>
                         {/* <th className='border border-black'>Precio</th> */}
                         <th className='hidden border border-black lg:block'>Foto</th>
@@ -121,24 +131,24 @@ const AdminPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {products.map(products => {
+                      {porductCrema.map(productCrema => {
                         return (
-                          <tr key={products.id}>
-                            <td className='border border-black px-2 text-center'>{products.id}</td>
-                            <td className='border border-black px-2'>{products.nombre}</td>
+                          <tr key = {productCrema.docID}>
+                            <td className='border border-black px-2 text-center'>{productCrema.codigo}</td>
+                            <td className='border border-black px-2'>{productCrema.name}</td>
                             {/* <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td> */}
                             <td className='hidden border border-black py-1 lg:block'>
-                              <img className='rounded-lg max-w-20 justify-self-center border border-black' src={products.foto} alt="" />
+                              <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productCrema.photo ?? 'https://placehold.co/80x80'} alt="" />
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
-                                <Link to={`/edit/product/${products.id}`} >
+                                <Link to={`/edit/product/}`} >
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                                 </Link>
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button onClick={() => handleRemove(products.id)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button onClick={() => handleRemoveCrema(productCrema.docID)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>

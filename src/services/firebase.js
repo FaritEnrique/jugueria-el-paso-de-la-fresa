@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { get } from "react-hook-form";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD8meBoF0ZYRIaEvSED1_84mGeJXRXe4AY",

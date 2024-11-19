@@ -1,12 +1,22 @@
 import criollosRegionales from "../images/Foto_Criollos_Regionales.png";
 import popularesJuane from "../images/Foto_Populares_Juane.png";
-import cremas from "../images/Cremas.png";
 import Carrusel from '../util/Carrusel';
-import Counter from "../components/Counter";
+import usePasoFresa from "../hooks/usePasoFresa";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
+    const { fetchProductCrema } = usePasoFresa()
+
+    const [porductCrema, setProductCrema] = useState([])
+
+    useEffect(() => {
+        fetchProductCrema()
+            .then(data => setProductCrema(data))
+    }, [])
+
     return (
         <section className='place-items-center h-full p-6'>
+            {/* <div>{JSON.stringify(porductCrema)}</div> */}
             <section className='w-full mt-4 mb-4 bg-green-200 p-6 rounded-xl'>
                 <div>
                     <h2 className='text-2xl text-center font-bold mb-4'>¿Quienes Somos?</h2>
@@ -28,11 +38,11 @@ const HomePage = () => {
                 <div className="bg-gray-300" >
                     <img src="https://i.ibb.co/8sfdz5T/Propiedades-Fresa.png" alt="Propiedades de la Fresa" />
                 </div>
-                <div className="w-full p-2 mb-4 rounded-xl place-items-center">
+                <div className="w-full p-2 rounded-xl place-items-center">
                     <img src="https://i.ibb.co/ydwtzVQ/Ubicar-Fresas.png" alt="Imagen sugerir encontrar fresas" />
                 </div>
             </section>
-            <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mt-4 mb-4 py-6 px-2 w-full rounded-xl'>
+            <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mb-4 py-6 px-2 w-full rounded-xl'>
                 <div>
                     <h2 className='bg-red-600 w-full text-white font-bold text-2xl text-center rounded-xl'>Productos</h2>
                 </div>
@@ -42,7 +52,6 @@ const HomePage = () => {
                         <table className='w-full bg-white'>
                             <thead>
                                 <tr className=''>
-                                    <th className='w-10 border border-black'>Cod.</th>
                                     <th className='w-40 border border-black'>Producto</th>
                                     <th className='w-20 border border-black md:w-20'>Peq.</th>
                                     <th className='w-20 border border-black md:w-20'>Med.</th>
@@ -50,17 +59,16 @@ const HomePage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {usuarios.map(usuarios => { */}
-                                    {/* return ( */}
-                                        <tr>
-                                            <td className='border border-black px-2 text-center'>01</td>
-                                            <td className='border border-black px-2'>Crema Fresa</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/8.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/12.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/15.00</td>
+                                {porductCrema.map(productCrema => {
+                                    return (
+                                        <tr key = {productCrema.docID}>
+                                            <td className='border border-black px-2'>{productCrema.name}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productCrema.priceSmall).toFixed(2)}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productCrema.priceMedium).toFixed(2)}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productCrema.priceBig).toFixed(2)}</td>
                                         </tr>
-                                    {/* ) */}
-                                {/* })} */}
+                                    )
+                                })}
                             </tbody>
                         </table>
                         {/* <div className='flex place-content-between'>
@@ -93,7 +101,6 @@ const HomePage = () => {
                         <table className='w-full bg-white'>
                             <thead>
                                 <tr className=''>
-                                    <th className='w-10 border border-black'>Cod.</th>
                                     <th className='w-40 border border-black'>Producto</th>
                                     <th className='w-20 border border-black md:w-20'>Peq.</th>
                                     <th className='w-20 border border-black md:w-20'>Med.</th>
@@ -104,7 +111,6 @@ const HomePage = () => {
                                 {/* {usuarios.map(usuarios => { */}
                                     {/* return ( */}
                                         <tr>
-                                            <td className='border border-black px-2 text-center'>01</td>
                                             <td className='border border-black px-2'>Crema Fresa</td>
                                             <td className='w-20 border border-black px-2 text-center md:w-20'>S/8.00</td>
                                             <td className='w-20 border border-black px-2 text-center md:w-20'>S/12.00</td>
@@ -170,7 +176,7 @@ const HomePage = () => {
             </section>
             <section className="w-full">
                 <div className="bg-gray-300 flex">
-                    <img className="flex-grow" src="https://i.ibb.co/k5HY5K8/VENTA-DE-FRESA.png" alt="Banner de Venta de Fresas" />
+                    <img className="flex-grow rounded-2xl" src="https://i.ibb.co/k5HY5K8/VENTA-DE-FRESA.png" alt="Banner de Venta de Fresas" />
                 </div>
             </section>
             <section className='bg-orange-400 mt-4 mb-4 p-6 w-full rounded-xl'>
@@ -178,23 +184,26 @@ const HomePage = () => {
                     <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
                 </div>
                 <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover">
-                    <div  className='grid grid-cols-2 md:grid-cols-4 gap-8 p-4'>
-                        <div className="w-full border-2 border-gray-200 rounded-lg min-h-80">
-                            <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-justify">
-                                Fresas Frescas x Kg
-                            </h5>
-                            <img
-                                className="rounded-lg w-[295px]"
-                                src= {criollosRegionales} alt="Foto de Platos Criollos y Regionales"/>
-                            <div className="px-5 pb-5 flex flex-col mt-2">
-                                <div className="flex flex-col justify-between md:flex-row gap-2 bg-gray-50 p-2 rounded-lg">
-                                    <span className="text-xl font-bold">
-                                        S/ 16.00
-                                    </span>
-                            </div>
-                        </div>
+                    <div  className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4 mx-auto'>
+                        
+                                <div className="w-full border-2 border-gray-200 rounded-lg min-h-80">
+                                    <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-justify">
+                                        Fresa en Bolsa 1Kg
+                                    </h5>
+                                    <img
+                                        className="rounded-lg w-[295px]"
+                                        src= {criollosRegionales} alt="Foto de Platos Criollos y Regionales"/>
+                                    <div className="px-5 pb-5 flex flex-col mt-2">
+                                        <div className="flex flex-col justify-between md:flex-row gap-2 bg-gray-50 p-2 rounded-lg">
+                                            <span className="text-xl font-bold">
+                                                S/ 16.00
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/* )
+                        })} */}
                     </div>
-                </div>
                 
                     {/* <div style={{backgroundImage: 'url(https://i.ibb.co/nsP4vT0/Fondo-Criollos.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl text-black font-bold w-2/4'>
                         <div className='bg-slate-500 bg-opacity-60 p-2'>
