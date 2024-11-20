@@ -7,7 +7,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import { Layout } from './components/Layout'
 import AdminPage from './pages/AdminPage'
-import EditarProductosPage from './components/EditarProductosPage'
+import EditarCremaPage from './components/EditarCremaPage'
 import { Toaster } from 'sonner'
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/admin' element={<AdminPage />} />
-          <Route path='/edit/product/:id' element={<EditarProductosPage />} />
+          <Route path='/edit/crema/:id' element={<EditarCremaPage />} />
 
         </Route>
       </Routes>

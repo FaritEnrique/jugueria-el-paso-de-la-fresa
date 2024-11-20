@@ -36,7 +36,9 @@ const Header = () => {
             <header className='w-full bg-orange-400 py-2 px-6'>
                 <div className='container mx-auto flex justify-between items-center mb-2'>
                     <div className='max-w-full'>
-                        <img src= {logoJugo} alt="Logotipo" />
+                        <Link to='/' >
+                            <img src= {logoJugo} alt="Logotipo" />
+                        </Link>
                     </div>
                     <div className='flex items-center p-2'>
                         <button data-collapse-toggle="navbar" className='md:hidden hover:bg-gray-100 focus:outline-nonering-slate-300 

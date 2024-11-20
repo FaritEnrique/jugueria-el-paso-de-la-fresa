@@ -4,7 +4,7 @@ import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
 import usePasoFresa from "../hooks/usePasoFresa";
 import ModalUsuarios from '../components/ModalUsuarios';
-import ModalProductos from '../components/ModalProductos';
+import ModalCrearCrema from '../components/ModalCrearCrema';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { toast } from 'sonner';
@@ -28,11 +28,7 @@ const AdminPage = () => {
   }, [])
 
 
-  const handleRemoveCrema = async (id) => {
-    console.log(id)
-
-    await removeCrema(id)
-    
+  const handleRemoveCrema = (id) => {
     Swal.fire({
       title: "¿Estás Seguro?",
       text: "¡No lo podrás revertir!",
@@ -43,20 +39,19 @@ const AdminPage = () => {
       confirmButtonText: "¿Sí, Borrar!"
     }).then((result) => {
       if (result.isConfirmed) {
-        eliminarProducto(id)
+        removeCrema(id)
           .then(() => {
-            
-            fetchProducts()
-              .then(data => setProducts(data))
-
+            fetchProductCrema()
+              .then(data => setProductCrema(data))
             toast.success('El producto ha sido eliminado')
           })
       }
     });
+  }
 
+  const Actualizar = () => {
     fetchProductCrema()
       .then(data => setProductCrema(data))
-
   }
 
   return (
@@ -70,7 +65,14 @@ const AdminPage = () => {
                 <h2 className='font-bold text-center bg-white text-2xl'>
                   Usuarios Existentes
                 </h2>
-                <ModalUsuarios />
+                <div className='flex justify-around'>
+                  <ModalUsuarios />
+                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
+                  font-bold rounded-xl'>
+                    Actualizar
+                  </button>
+                </div>
+                
                 <div className='py-4 px-4 w-full bg-black rounded-xl'>
                   <table className='w-full bg-white'>
                     <thead>
@@ -90,9 +92,11 @@ const AdminPage = () => {
                             <td className='border border-black px-2'>{usuarios.nombres}</td>
                             <td className='border border-black px-2'>{usuarios.apellidos}</td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
-                                <FaPencil size={16} className='text-blue-500 text-center' />
-                              </button>
+                              <Link>
+                                <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                                </button>
+                              </Link>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
@@ -117,7 +121,14 @@ const AdminPage = () => {
                 <h2 className='font-bold text-center bg-white text-2xl'>
                   Productos Existentes
                 </h2>
-                <ModalProductos />
+                <div className='flex justify-between'>
+                  <ModalCrearCrema />
+                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
+                  font-bold rounded-xl' onClick={Actualizar}>
+                    Actualizar
+                  </button>
+                </div>
+                
                 <div className='py-4 px-4 w-full bg-white rounded-xl'>
                   <table className='w-full'>
                     <thead>
@@ -142,13 +153,13 @@ const AdminPage = () => {
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
-                                <Link to={`/edit/product/}`} >
+                                <Link to={`/edit/crema/${productCrema.docId}`} >
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                                 </Link>
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button onClick={() => handleRemoveCrema(productCrema.docID)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button onClick={() => handleRemoveCrema(productCrema.docId)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>

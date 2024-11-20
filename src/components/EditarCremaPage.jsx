@@ -41,9 +41,20 @@ const EditarProductos = () => {
         <div className='flex justify-center mx-auto'>
             <div className='w-full bg-slate-400 py-4 px-2 mx-auto rounded-xl my-4 sm:w-3/4 md:w-3/4 md:px-6 lg:w-1/2 lg:px-6'>
                 <div className='bg-white py-2'>
-                    <h2 className='mb-2 font-bold text-center'>Editar Producto</h2>
+                    <h2 className='mb-2 font-bold text-center'>Editar Crema</h2>
                 </div>
                 <form onSubmit={handleSave} className='mt-4 p-2 w-full bg-black rounded-xl'>
+                    <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
+                        <span className='font-bold'>Codigo</span>
+                        <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 
+                            type="text" 
+                            placeholder='Ejem. Helado de ...' 
+                            name='nombre'
+                            required
+                            onChange={handleChange}
+                            value={form.nombre}
+                        />
+                    </label>
                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">
                         <span className='font-bold'>Nombre</span>
                         <input className='border border-black px-2 py-1 rounded-lg hover:border-blue-400 text-black' 

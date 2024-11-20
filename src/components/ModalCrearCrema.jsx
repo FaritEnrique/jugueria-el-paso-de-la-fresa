@@ -39,6 +39,7 @@ const ModalProductos = () => {
                 priceBig: '',
                 photo: ''
             })
+                
             navigate('/admin')
         }
 
@@ -51,6 +52,8 @@ const ModalProductos = () => {
                 buttons: 'Aceptar',
                 timer: '5000'
         })
+
+        setOpen(true)
     }
 
     const [open, setOpen] = useState(false);
@@ -59,7 +62,7 @@ const ModalProductos = () => {
         <>
             <button className='bg-blue-400 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
             font-bold rounded-xl' onClick={() => setOpen(true)}>
-                Agregar Productos
+                Agregar Crema
             </button>
             
             {open &&(
@@ -75,7 +78,7 @@ const ModalProductos = () => {
                         <div className='w-full py-4 flex justify-center'>
                             <div className='w-full bg-slate-400 py-4 px-6 rounded-xl'>
                                 <div className='bg-white py-2'>
-                                    <h2 className='mb-2 font-bold text-center'>Registre Nuevo Producto</h2>
+                                    <h2 className='mb-2 font-bold text-center'>Registre Nueva Crema</h2>
                                     <p className='px-4 text-justify'>Ingrese todos los campos para un registro satisfatoriio</p>
                                 </div>
                                 <form onSubmit={handleSave} className='mt-4 p-2 w-full bg-black max-h-[440px] rounded-xl overflow-y-scroll'>
