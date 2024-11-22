@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegWindowClose } from "react-icons/fa";
 import swal from 'sweetalert';
 import usePasoFresa from '../hooks/usePasoFresa'; 
@@ -39,11 +39,11 @@ const ModalProductos = () => {
                 priceBig: '',
                 photo: ''
             })
-                
+
             navigate('/admin')
+            
         }
 
-        console.log('Guardando datos ...')
         crearCrema
         swal({
             title: 'Buen Trabajo',
@@ -53,7 +53,9 @@ const ModalProductos = () => {
                 timer: '5000'
         })
 
-        setOpen(true)
+        setOpen(false)
+
+        
     }
 
     const [open, setOpen] = useState(false);

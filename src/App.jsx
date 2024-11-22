@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage'
 import { Layout } from './components/Layout'
 import AdminPage from './pages/AdminPage'
 import EditarCremaPage from './components/EditarCremaPage'
+import VerCremaId from './pages/VerCremaId'
 import { Toaster } from 'sonner'
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/admin' element={<AdminPage />} />
           <Route path='/edit/crema/:id' element={<EditarCremaPage />} />
+          <Route path='/ver/crema/:id' element={<VerCremaId />} />
 
         </Route>
       </Routes>

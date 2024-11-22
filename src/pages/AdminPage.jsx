@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { fetchUsuarios } from '../services/usuarios'
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
+import { FaEye } from "react-icons/fa6";
 import usePasoFresa from "../hooks/usePasoFresa";
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalCrearCrema from '../components/ModalCrearCrema';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { toast } from 'sonner';
 
 const AdminPage = () => {
+
+  const navigate = useNavigate()
 
   const [usuarios, setUsuarios] = useState([])
 
@@ -27,6 +30,26 @@ const AdminPage = () => {
       .then(data => setProductCrema(data))
   }, [])
 
+  const handleEditCrema = (id) => {
+    Swal.fire({
+      title: "¿Está Seguro de Hacer Modificaciones?",
+      text: "No podrá revertir las Modificaciones",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, deseo Editar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/edit/crema/${id}`)
+        /* Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        }); */
+      }
+    });
+  }
 
   const handleRemoveCrema = (id) => {
     Swal.fire({
@@ -137,6 +160,7 @@ const AdminPage = () => {
                         <th className='border border-black'>Nombre</th>
                         {/* <th className='border border-black'>Precio</th> */}
                         <th className='hidden border border-black lg:block'>Foto</th>
+                        <th className='border border-black'>Ver</th>
                         <th className='border border-black'>Editar</th>
                         <th className='border border-black'>Borrar</th>
                       </tr>
@@ -144,7 +168,7 @@ const AdminPage = () => {
                     <tbody>
                       {porductCrema.map(productCrema => {
                         return (
-                          <tr key = {productCrema.docID}>
+                          <tr key = {productCrema.docId}>
                             <td className='border border-black px-2 text-center'>{productCrema.codigo}</td>
                             <td className='border border-black px-2'>{productCrema.name}</td>
                             {/* <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td> */}
@@ -153,9 +177,16 @@ const AdminPage = () => {
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
-                                <Link to={`/edit/crema/${productCrema.docId}`} >
-                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                                <Link to={`/ver/crema/${productCrema.docId}`} >
+                                  <FaEye size={20} className='text-blue-500 text-center' />
                                 </Link>
+                              </button>
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditCrema(productCrema.docId)}>
+                                {/* <Link to={`/edit/crema/${productCrema.docId}`} > */}
+                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                                {/* </Link> */}
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>

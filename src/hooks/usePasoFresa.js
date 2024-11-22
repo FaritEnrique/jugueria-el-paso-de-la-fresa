@@ -1,4 +1,4 @@
-import { collection, query, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, query, getDocs, addDoc, doc, updateDoc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
 export const usePasoFresa = () => {
@@ -36,17 +36,35 @@ export const usePasoFresa = () => {
     }
 
     const removeCrema = async (id) => {
-        const documentCrema = doc (db, 'productCrema', id)
+        const documentCrema = doc (refCrema, id)
 
         const responseRemoveCrema = await deleteDoc(documentCrema)
 
         return responseRemoveCrema
     }
 
+    const obtenerCrema = async (id) => {
+        const documentObtenerCrema = doc(db, 'productCrema', id)
+
+        const responseObtenerCrema = await getDoc(documentObtenerCrema)
+
+        return responseObtenerCrema
+    }
+
+    const editarCrema = async (form, id) => {
+        const documentEditarCrema = doc(db, 'productCrema', id)
+
+        const responseEditarCrema = await fetch(documentEditarCrema)
+        
+        return responseEditarCrema
+    }
+
     return {
         fetchProductCrema,
         crearCrema,
-        removeCrema
+        removeCrema,
+        obtenerCrema,
+        editarCrema
     }
 
 }
