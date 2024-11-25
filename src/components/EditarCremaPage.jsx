@@ -41,7 +41,8 @@ const EditarCremaPage = () => {
 
         try {
             const respEditarCrema = await editarCrema(form, id);
-            if (respEditarCrema.success) {
+            console.log(respEditarCrema);
+            if (respEditarCrema && respEditarCrema.success) {
                 setForm({
                     codigo: '',
                     name: '',
@@ -77,7 +78,7 @@ const EditarCremaPage = () => {
         <div className='flex justify-center mx-auto'>
             <div className='w-full bg-slate-400 py-4 px-2 mx-auto rounded-xl my-4 sm:w-3/4 md:w-3/4 md:px-6 lg:w-1/2 lg:px-6'>
                 <div className='bg-white py-2'>
-                    <h2 className='mb-2 font-extrabold text-2xl text-center'>EDITAR CREMA COD: {form.codigo}</h2>
+                    <h2 className='mb-2 font-extrabold text-2xl text-center'>EDITAR CREMA COD: {id}</h2>
                 </div>
                 <form onSubmit={handleSave} className='mt-4 p-2 w-full bg-black rounded-xl'>
                     <label className='flex flex-col gap-2 px-4 pt-4 text-white' htmlFor="">

@@ -59,7 +59,10 @@ export const usePasoFresa = () => {
 
         const cremaModificada = await updateDoc(documentEditarCrema, form)
         
-        return cremaModificada
+        return {
+            "success": true,
+            "message": "Producto editado correctamente"
+        }
     }
 
     return {
