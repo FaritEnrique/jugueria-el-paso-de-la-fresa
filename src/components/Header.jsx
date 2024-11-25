@@ -9,7 +9,6 @@ import { FaUserTie } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { LuMenuSquare } from "react-icons/lu";
 
-
 const Header = () => {
     const { cart, removeFromCart, cleanCart } = useCartStore()
 

@@ -38,25 +38,28 @@ export const usePasoFresa = () => {
     const removeCrema = async (id) => {
         const documentCrema = doc (refCrema, id)
 
-        const responseRemoveCrema = await deleteDoc(documentCrema)
+        await deleteDoc(documentCrema)
 
-        return responseRemoveCrema
+        return { success: true, id }
     }
 
     const obtenerCrema = async (id) => {
-        const documentObtenerCrema = doc(db, 'productCrema', id)
+        const documentObtenerCrema = doc(refCrema, id)
 
-        const responseObtenerCrema = await getDoc(documentObtenerCrema)
+        const crema = await getDoc(documentObtenerCrema)
 
-        return responseObtenerCrema
+        /* console.log(crema.data()) */
+
+        return crema.data()
     }
 
     const editarCrema = async (form, id) => {
-        const documentEditarCrema = doc(db, 'productCrema', id)
 
-        const responseEditarCrema = await fetch(documentEditarCrema)
+        const documentEditarCrema = doc(refCrema, id)
+
+        const cremaModificada = await updateDoc(documentEditarCrema, form)
         
-        return responseEditarCrema
+        return cremaModificada
     }
 
     return {
