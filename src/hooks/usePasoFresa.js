@@ -190,6 +190,24 @@ export const usePasoFresa = () => {
         }
     }
 
+    const refCliente = collection(db, 'cliente')
+
+    const crearCliente = async (cliente) => {
+        const newCliente = {
+            dni: cliente.dni,
+            name: cliente.name,
+            direccion: cliente.direccion,
+            correo: cliente.correo,
+            celular: cliente.celular
+        }
+        const responseCliente = await addDoc(refCliente, newCliente)
+
+        return {
+            id: responseCliente.id,
+            newCliente
+        }
+    }
+
     return {
         fetchProductCrema,
         crearCrema,
@@ -205,7 +223,8 @@ export const usePasoFresa = () => {
         crearFresa,
         removeFresa,
         obtenerFresa,
-        editarFresa
+        editarFresa,
+        crearCliente
     }
 
 }
