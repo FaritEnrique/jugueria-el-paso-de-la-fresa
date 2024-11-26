@@ -9,8 +9,10 @@ import { Layout } from './components/Layout'
 import AdminPage from './pages/AdminPage'
 import EditarCremaPage from './components/EditarCremaPage'
 import EditarFrozenPage from './components/EditarFrozenPage'
+import EditarFresaPage from './components/EditarFesaPage'
 import VerCremaId from './pages/VerCremaId'
 import VerFrozenId from './pages/VerFrozenId'
+import VerFresaId from './pages/VerFresaId'
 import { Toaster } from 'sonner'
 
 const App = () => {
@@ -30,6 +32,8 @@ const App = () => {
           <Route path='/ver/crema/:id' element={<VerCremaId />} />
           <Route path='/edit/frozen/:id' element={<EditarFrozenPage />} />
           <Route path='/ver/frozen/:id' element={<VerFrozenId />} />
+          <Route path='/edit/fresa/:id' element={<EditarFresaPage />} />
+          <Route path='/ver/fresa/:id' element={<VerFresaId />} />
 
         </Route>
       </Routes>

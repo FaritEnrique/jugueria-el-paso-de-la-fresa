@@ -152,9 +152,7 @@ const ModalProductos = () => {
                                     <div className='flex justify-center'>
                                         <input type="submit" value="Guardar" className='bg-blue-500 border border-black hover:bg-red-200 ring-gray-400 ring-2 px-4 py-2 rounded-xl m-4' />
                                     </div>
-                                    <pre>{JSON.stringify(form, null, 2)}</pre>
                                 </form>
-                                
                             </div>
                         </div>
                     </div>

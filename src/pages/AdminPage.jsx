@@ -7,6 +7,7 @@ import usePasoFresa from "../hooks/usePasoFresa";
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalCrearCrema from '../components/ModalCrearCrema';
 import ModalCrearFrozen from '../components/ModalCrearFrozen';
+import ModalCrearFresa from '../components/ModalCrearFresa';
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { toast } from 'sonner';
@@ -124,9 +125,60 @@ const AdminPage = () => {
       .then(data => setProductFrozen(data))
   }
 
+  const { fetchProductFresa, removeFresa } = usePasoFresa()
+
+  const [productFresa, setProductFresa] = useState([])
+  
+  useEffect(() => {
+    fetchProductFresa()
+      .then(data => setProductFresa(data))
+  }, [])
+
+  const handleEditFresa = (id) => {
+    Swal.fire({
+      title: "¿Está Seguro de Hacer Modificaciones?",
+      text: "No podrá revertir las Modificaciones",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, deseo Editar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/edit/fresa/${id}`)
+      }
+    });
+  }
+
+  const handleRemoveFresa = (id) => {
+    Swal.fire({
+      title: "¿Estás Seguro?",
+      text: "¡No lo podrás revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¿Sí, Borrar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeFresa(id)
+          .then(() => {
+            fetchProductFresa()
+              .then(data => setProductFresa(data))
+            toast.success('El producto ha sido eliminado')
+          })
+      }
+    });
+  }
+
+  const actualizarFresa = () => {
+    fetchProductFresa()
+      .then(data => setProductFresa(data))
+  }
+
   return (
     <>
-        <section className='my-4 mx-6 py-4'>
+        <section className='my-4 mx-2 py-4'>
             <h1 className='font-bold text-center text-3xl py-2 w-full bg-slate-100 border-black rounded-xl'>
                 GESTIÓN DE USUARIOS
             </h1>
@@ -137,13 +189,13 @@ const AdminPage = () => {
                 </h2>
                 <div className='flex justify-around'>
                   <ModalUsuarios />
-                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
+                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-2 text-sm 
                   font-bold rounded-xl'>
                     Actualizar
                   </button>
                 </div>
                 
-                <div className='py-4 px-4 w-full bg-black rounded-xl'>
+                <div className='py-4 px-2 w-full bg-black rounded-xl'>
                   <table className='w-full bg-white'>
                     <thead>
                       <tr className=''>
@@ -163,13 +215,13 @@ const AdminPage = () => {
                             <td className='border border-black px-2'>{usuarios.apellidos}</td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <Link>
-                                <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                                 </button>
                               </Link>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>
@@ -187,7 +239,7 @@ const AdminPage = () => {
                 GESTIÓN DE PRODUCTOS
             </h1>
             <div className='my-4 py-4 border border-black rounded-xl bg-slate-400'>
-              <div className='px-4 bg-slate-400-500'>
+              <div className='px-2 bg-slate-400-500'>
                 <h2 className='font-bold text-center bg-white text-2xl'>
                   Productos Existentes
                 </h2>
@@ -199,7 +251,7 @@ const AdminPage = () => {
                   </button>
                 </div>
                 
-                <div className='py-4 px-4 w-full bg-white rounded-xl'>
+                <div className='py-4 px-2 w-full bg-white rounded-xl'>
                   <table className='w-full'>
                     <thead>
                       <tr className=''>
@@ -221,19 +273,19 @@ const AdminPage = () => {
                               <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productCrema.photo ?? 'https://placehold.co/80x80'} alt="" />
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <Link to={`/ver/crema/${productCrema.docId}`} >
                                   <FaEye size={20} className='text-blue-500 text-center' />
                                 </Link>
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditCrema(productCrema.docId)}>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditCrema(productCrema.docId)}>
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button onClick={() => handleRemoveCrema(productCrema.docId)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button onClick={() => handleRemoveCrema(productCrema.docId)} className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>
@@ -243,7 +295,6 @@ const AdminPage = () => {
                     </tbody>
                   </table>
                 </div>
-                <br />
                 <div className='flex justify-between'>
                   <ModalCrearFrozen />
                   <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
@@ -251,8 +302,7 @@ const AdminPage = () => {
                     Actualizar
                   </button>
                 </div>
-                
-                <div className='py-4 px-4 w-full bg-white rounded-xl'>
+                <div className='py-4 px-2 w-full bg-white rounded-xl'>
                   <table className='w-full'>
                     <thead>
                       <tr className=''>
@@ -274,19 +324,70 @@ const AdminPage = () => {
                               <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productFrozen.photo ?? 'https://placehold.co/80x80'} alt="" />
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <Link to={`/ver/frozen/${productFrozen.docId}`} >
                                   <FaEye size={20} className='text-blue-500 text-center' />
                                 </Link>
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditFrozen(productFrozen.docId)}>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditFrozen(productFrozen.docId)}>
                                   <FaPencil size={16} className='text-blue-500 text-center' />
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
-                              <button onClick={() => handleRemoveFrozen(productFrozen.docId)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                              <button onClick={() => handleRemoveFrozen(productFrozen.docId)} className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <BsTrash3 size={16} className='text-red-500 text-center'/>
+                              </button>
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <div className='flex justify-between'>
+                  <ModalCrearFresa />
+                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
+                  font-bold rounded-xl' onClick={actualizarFresa}>
+                    Actualizar
+                  </button>
+                </div>
+                <div className='py-4 px-2 w-full bg-white rounded-xl'>
+                  <table className='w-full'>
+                    <thead>
+                      <tr className=''>
+                        <th className='w-10 border border-black'>Cod</th>
+                        <th className='border w-[2000px] border-black'>Nombre</th>
+                        <th className='hidden border w-24 border-black lg:block'>Foto</th>
+                        <th className='border border-black'>Ver</th>
+                        <th className='border border-black'>Editar</th>
+                        <th className='border border-black'>Borrar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {productFresa.map(productFresa => {
+                        return (
+                          <tr key = {productFresa.docId}>
+                            <td className='border border-black px-2 text-center'>{productFresa.codigo}</td>
+                            <td className='border w-[2000px] border-black px-2'>{productFresa.name}</td>
+                            <td className='hidden w-24 border border-black py-1 lg:block'>
+                              <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productFresa.photo ?? 'https://placehold.co/80x80'} alt="Foto Producto" />
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <Link to={`/ver/fresa/${productFresa.docId}`} >
+                                  <FaEye size={20} className='text-blue-500 text-center' />
+                                </Link>
+                              </button>
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditFresa(productFresa.docId)}>
+                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                              </button>
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button onClick={() => handleRemoveFresa(productFresa.docId)} className='px-1 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>

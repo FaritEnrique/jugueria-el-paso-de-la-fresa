@@ -12,6 +12,7 @@ const HomePage = () => {
         fetchProductCrema()
             .then(data => setProductCrema(data))
     }, [])
+
     const { fetchProductFrozen } = usePasoFresa()
 
     const [productFrozen, setProductFrozen] = useState([])
@@ -19,6 +20,15 @@ const HomePage = () => {
     useEffect(() => {
         fetchProductFrozen()
             .then(data => setProductFrozen(data))
+    }, [])
+
+    const { fetchProductFresa } = usePasoFresa()
+
+    const [productFresa, setProductFresa] = useState([])
+
+    useEffect(() => {
+        fetchProductFresa()
+            .then(data => setProductFresa(data))
     }, [])
 
     return (
@@ -137,28 +147,30 @@ const HomePage = () => {
                 <div>
                     <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
                 </div>
-                <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover">
-                    <div  className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4 mx-auto'>
-                        
-                                <div className="w-full border-2 border-gray-200 rounded-lg min-h-80">
-                                    <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-justify">
-                                        Fresa en Bolsa 1Kg
+                <br />
+                <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover rounded-xl p-4">
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 mx-auto rounded-xl w-full bg-white '>
+                        {productFresa.map(productFresa => {
+                            return(
+                                <div key={productFresa.docId} className="w-full border-2 border-gray-200 rounded-lg flex flex-col
+                                bg-black p-2 justify-center">
+                                    <h5 className="text-lg min-h-16 pb-2 text-white font-semibold text-center px-2">
+                                        {productFresa.name}
                                     </h5>
                                     <img
-                                        className="rounded-lg w-[295px]"
-                                        src= {criollosRegionales} alt="Foto de Platos Criollos y Regionales"/>
-                                    <div className="px-5 pb-5 flex flex-col mt-2">
-                                        <div className="flex flex-col justify-between md:flex-row gap-2 bg-gray-50 p-2 rounded-lg">
-                                            <span className="text-xl font-bold">
-                                                S/ 16.00
-                                            </span>
-                                        </div>
-                                    </div>
+                                        className="rounded-lg object-cover flex-grow"
+                                        src= {productFresa.photo} alt="Foto Producto"/>
+                                    <div className="px-5 pb-5 flex flex-grow flex-wrap gap-4 justify-between mt-2 w-full md:justify-around">
+                                            <p className="text-lg text-white">Precio:</p>
+                                            <p className="text-xl text-white font-bold">
+                                                S/{parseFloat(productFresa.price).toFixed(2)}
+                                            </p>
+                                    </div>    
                                 </div>
-                            {/* )
-                        })} */}
+                            )
+                        })}
                     </div>
-                
+                    
                     {/* <div style={{backgroundImage: 'url(https://i.ibb.co/nsP4vT0/Fondo-Criollos.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl text-black font-bold w-2/4'>
                         <div className='bg-slate-500 bg-opacity-60 p-2'>
                             <h3 className='font-extrabold'>Sanguches Criollos</h3>

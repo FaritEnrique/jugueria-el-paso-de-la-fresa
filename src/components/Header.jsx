@@ -24,8 +24,8 @@ const Header = () => {
 
     const classShowMenu = abrir ? 'translate-none' : 'translate-x-full'
 
-    const total = cart.reduce((acc, products) => {
-        const subTotal = products.precio * products.cantidad
+    const total = cart.reduce((acc, productCrema) => {
+        const subTotal = productCrema.precio * productCrema.cantidad
 
         return acc + subTotal
     }, 0)
@@ -109,20 +109,20 @@ const Header = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {cart && cart.map(products => {
+                                                {cart && cart.map(productCrema => {
                                                     return (
-                                                        <tr className='bg-white border-b' key={products.id}>
+                                                        <tr className='bg-white border-b' key={productCrema.id}>
                                                             <td className='px-4 py-2'>
-                                                                {products.nombre}
+                                                                {productCrema.name}
                                                             </td>
                                                             <td className='px-4 py-2 text-right'>S/ 
-                                                                {products.precio.toFixed(2)}
+                                                                {parseFloat(productCrema.priceSmall).toFixed(2)}
                                                             </td>
                                                             <td className="px-4 py-2 text-center">
-                                                                {products.cantidad}
+                                                                {productCrema.cantidad}
                                                             </td>
                                                             <td className="px-4 py-2 text-center">
-                                                                <button onClick={() => removeFromCart(products.id)}>
+                                                                <button onClick={() => removeFromCart(productCrema.id)}>
                                                                     <BsTrash size={20} className='text-red-600 text-center' />
                                                                 </button>
                                                             </td>

@@ -6,24 +6,24 @@ export const useCartStore = create(
         cart: [],
 
         //Actions
-        pedir: (newProducts) => {
+        pedir: (newProductCrema) => {
             // ¿Existe el nuevo producto en el carrito de compra?
-            const productsInCartIndex = get().cart.findIndex(
-                products => products.id === newProducts.id
+            const productCremaInCartIndex = get().cart.findIndex(
+                productCrema => productCrema.id === newProductCrema.id
             )
 
-            if (productsInCartIndex >= 0) {
+            if (productCremaInCartIndex >= 0) {
                 // La lógica para cuando el producto ya existe en el carrito de compras
                 // Aquí incrementaremos el campo quantity
 
-                const newCart = get().cart.map(products => {
-                    if (products.id === newProducts.id) {
+                const newCart = get().cart.map(productCrema => {
+                    if (productCrema.id === newProductCrema.id) {
                         return {
-                            ...products,
-                            cantidad: products.cantidad + 1
+                            ...productCrema,
+                            cantidad: productCrema.cantidad + 1
                         }
                     }
-                    return products
+                    return productCrema
                 })
 
                 set(() => ({ cart: newCart }))
@@ -33,13 +33,13 @@ export const useCartStore = create(
 
             // Esta línea se ejecuta cuando el producto es nuevo en el carrito de compras
             set(state => ({
-                cart: [...state.cart, { ...newProducts, cantidad: 1 }]
+                cart: [...state.cart, { ...newProductCrema, cantidad: 1 }]
             }))
         },
         removeFromCart: (id) => {
             //Remover el producto usando el id que tenemos en los parámetros de la función
             set(state => {
-                const newCart = state.cart.filter(products => products.id !== id)
+                const newCart = state.cart.filter(productCrema => productCrema.id !== id)
                 
                 return { cart: newCart }
             })

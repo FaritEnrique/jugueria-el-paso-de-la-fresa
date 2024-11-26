@@ -9,16 +9,16 @@ const Carrusel = () => {
 
     const slides = [
         {
-            url:'https://i.ibb.co/5sR1WKz/Juane.png'
+            url:'https://i.ibb.co/HPvSYDr/Fresa-bolsa-x-kg-carrusel.jpg'
         },
         {
             url:'https://i.ibb.co/720KngG/Helado-fresa.jpg'
         },
         {
-            url:'https://i.ibb.co/yQBpDs2/Sanguche-Chicharron.png'
+            url:'https://i.ibb.co/kQ5sF9F/fresas-envase-kg-carrusel.jpg'
         },
         {
-            url:'https://i.ibb.co/pLcWjVq/tacacho-con-cecina.png'
+            url:'https://i.ibb.co/X8djNn3/Caja-Fresa-x-20-kg-Carrusel.png'
         },
         {
             url:'https://i.ibb.co/Rcdnk53/Infusiones.png'

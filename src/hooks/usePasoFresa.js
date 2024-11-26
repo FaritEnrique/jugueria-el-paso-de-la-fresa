@@ -129,6 +129,67 @@ export const usePasoFresa = () => {
         }
     }
 
+    const refFresa = collection(db, 'productFresa')
+
+    const fetchProductFresa = async () => {
+        const qFresa = query(refFresa)
+        const dataFresa = await getDocs(qFresa)
+        const resultsFresa = []
+        dataFresa.forEach(doc => {
+            console.log(doc.id, doc.data())
+            resultsFresa.push({
+                docId: doc.id,
+                ...doc.data() // Representa el documento actual
+            })
+        })
+        return resultsFresa
+    }
+
+    const crearFresa = async (fresa) => {
+        const newFresa = {
+            codigo: fresa.codigo,
+            name: fresa.name,
+            price: fresa.price,
+            photo: fresa.photo
+        }
+        const responseFresa = await addDoc(refFresa, newFresa)
+
+        return {
+            id: responseFresa.id,
+            newFresa
+        }
+    }
+
+    const removeFresa = async (id) => {
+        const documentFresa = doc (refFresa, id)
+
+        await deleteDoc(documentFresa)
+
+        return { success: true, id }
+    }
+
+    const obtenerFresa = async (id) => {
+        const documentObtenerFresa = doc(refFresa, id)
+
+        const fresa = await getDoc(documentObtenerFresa)
+
+        /* console.log(crema.data()) */
+
+        return fresa.data()
+    }
+
+    const editarFresa = async (form, id) => {
+
+        const documentEditarFresa = doc(refFresa, id)
+
+        const fresaModificada = await updateDoc(documentEditarFresa, form)
+        
+        return {
+            "success": true,
+            "message": "Producto editado correctamente"
+        }
+    }
+
     return {
         fetchProductCrema,
         crearCrema,
@@ -139,7 +200,12 @@ export const usePasoFresa = () => {
         crearFrozen,
         removeFrozen,
         obtenerFrozen,
-        editarFrozen
+        editarFrozen,
+        fetchProductFresa,
+        crearFresa,
+        removeFresa,
+        obtenerFresa,
+        editarFresa
     }
 
 }
