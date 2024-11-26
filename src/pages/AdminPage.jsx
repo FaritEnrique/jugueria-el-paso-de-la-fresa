@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa6";
 import usePasoFresa from "../hooks/usePasoFresa";
 import ModalUsuarios from '../components/ModalUsuarios';
 import ModalCrearCrema from '../components/ModalCrearCrema';
+import ModalCrearFrozen from '../components/ModalCrearFrozen';
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { toast } from 'sonner';
@@ -23,7 +24,7 @@ const AdminPage = () => {
 
   const { fetchProductCrema, removeCrema } = usePasoFresa()
 
-  const [porductCrema, setProductCrema] = useState([])
+  const [productCrema, setProductCrema] = useState([])
   
   useEffect(() => {
     fetchProductCrema()
@@ -42,11 +43,6 @@ const AdminPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         navigate(`/edit/crema/${id}`)
-        /* Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        }); */
       }
     });
   }
@@ -72,9 +68,60 @@ const AdminPage = () => {
     });
   }
 
-  const Actualizar = () => {
+  const actualizarCrema = () => {
     fetchProductCrema()
       .then(data => setProductCrema(data))
+  }
+
+  const { fetchProductFrozen, removeFrozen } = usePasoFresa()
+
+  const [productFrozen, setProductFrozen] = useState([])
+  
+  useEffect(() => {
+    fetchProductFrozen()
+      .then(data => setProductFrozen(data))
+  }, [])
+
+  const handleEditFrozen = (id) => {
+    Swal.fire({
+      title: "¿Está Seguro de Hacer Modificaciones?",
+      text: "No podrá revertir las Modificaciones",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, deseo Editar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/edit/frozen/${id}`)
+      }
+    });
+  }
+
+  const handleRemoveFrozen = (id) => {
+    Swal.fire({
+      title: "¿Estás Seguro?",
+      text: "¡No lo podrás revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¿Sí, Borrar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeFrozen(id)
+          .then(() => {
+            fetchProductFrozen()
+              .then(data => setProductFrozen(data))
+            toast.success('El producto ha sido eliminado')
+          })
+      }
+    });
+  }
+
+  const ActualizarFrozen = () => {
+    fetchProductFrozen()
+      .then(data => setProductFrozen(data))
   }
 
   return (
@@ -147,7 +194,7 @@ const AdminPage = () => {
                 <div className='flex justify-between'>
                   <ModalCrearCrema />
                   <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
-                  font-bold rounded-xl' onClick={Actualizar}>
+                  font-bold rounded-xl' onClick={actualizarCrema}>
                     Actualizar
                   </button>
                 </div>
@@ -157,22 +204,20 @@ const AdminPage = () => {
                     <thead>
                       <tr className=''>
                         <th className='w-10 border border-black'>Cod</th>
-                        <th className='border border-black'>Nombre</th>
-                        {/* <th className='border border-black'>Precio</th> */}
-                        <th className='hidden border border-black lg:block'>Foto</th>
+                        <th className='border w-[2000px] border-black'>Nombre</th>
+                        <th className='hidden border w-24 border-black lg:block'>Foto</th>
                         <th className='border border-black'>Ver</th>
                         <th className='border border-black'>Editar</th>
                         <th className='border border-black'>Borrar</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {porductCrema.map(productCrema => {
+                      {productCrema.map(productCrema => {
                         return (
                           <tr key = {productCrema.docId}>
                             <td className='border border-black px-2 text-center'>{productCrema.codigo}</td>
-                            <td className='border border-black px-2'>{productCrema.name}</td>
-                            {/* <td className='border border-black px-2 text-center'>S/ {products.precio.toFixed(2)}</td> */}
-                            <td className='hidden border border-black py-1 lg:block'>
+                            <td className='border w-[2000px] border-black px-2'>{productCrema.name}</td>
+                            <td className='hidden w-24 border border-black py-1 lg:block'>
                               <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productCrema.photo ?? 'https://placehold.co/80x80'} alt="" />
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
@@ -184,13 +229,64 @@ const AdminPage = () => {
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditCrema(productCrema.docId)}>
-                                {/* <Link to={`/edit/crema/${productCrema.docId}`} > */}
                                   <FaPencil size={16} className='text-blue-500 text-center' />
-                                {/* </Link> */}
                               </button>
                             </td>
                             <td className='border border-black p-1 w-16 text-center'>
                               <button onClick={() => handleRemoveCrema(productCrema.docId)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <BsTrash3 size={16} className='text-red-500 text-center'/>
+                              </button>
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <br />
+                <div className='flex justify-between'>
+                  <ModalCrearFrozen />
+                  <button className='bg-green-200 ring-slate-50 ring-2 hover:bg-red-200 my-2 py-2 px-4 text-sm 
+                  font-bold rounded-xl' onClick={ActualizarFrozen}>
+                    Actualizar
+                  </button>
+                </div>
+                
+                <div className='py-4 px-4 w-full bg-white rounded-xl'>
+                  <table className='w-full'>
+                    <thead>
+                      <tr className=''>
+                        <th className='w-10 border border-black'>Cod</th>
+                        <th className='border w-[2000px] border-black'>Nombre</th>
+                        <th className='hidden w-24 border border-black lg:block'>Foto</th>
+                        <th className='border border-black'>Ver</th>
+                        <th className='border border-black'>Editar</th>
+                        <th className='border border-black'>Borrar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {productFrozen.map(productFrozen => {
+                        return (
+                          <tr key = {productFrozen.docId}>
+                            <td className='border border-black px-2 text-center'>{productFrozen.codigo}</td>
+                            <td className='border w-[2000px] border-black px-2'>{productFrozen.name}</td>
+                            <td className='hidden border w-24 border-black py-1 lg:block'>
+                              <img className='rounded-lg max-w-20 justify-self-center border border-black' src={productFrozen.photo ?? 'https://placehold.co/80x80'} alt="" />
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
+                                <Link to={`/ver/frozen/${productFrozen.docId}`} >
+                                  <FaEye size={20} className='text-blue-500 text-center' />
+                                </Link>
+                              </button>
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300' onClick={() => handleEditFrozen(productFrozen.docId)}>
+                                  <FaPencil size={16} className='text-blue-500 text-center' />
+                              </button>
+                            </td>
+                            <td className='border border-black p-1 w-16 text-center'>
+                              <button onClick={() => handleRemoveFrozen(productFrozen.docId)} className='px-3 py-2 border ring-blue-300 ring-2 rounded-xl mx-2 bg-slate-300'>
                                 <BsTrash3 size={16} className='text-red-500 text-center'/>
                               </button>
                             </td>

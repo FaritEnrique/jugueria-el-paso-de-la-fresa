@@ -8,7 +8,9 @@ import LoginPage from './pages/LoginPage'
 import { Layout } from './components/Layout'
 import AdminPage from './pages/AdminPage'
 import EditarCremaPage from './components/EditarCremaPage'
+import EditarFrozenPage from './components/EditarFrozenPage'
 import VerCremaId from './pages/VerCremaId'
+import VerFrozenId from './pages/VerFrozenId'
 import { Toaster } from 'sonner'
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
           <Route path='/admin' element={<AdminPage />} />
           <Route path='/edit/crema/:id' element={<EditarCremaPage />} />
           <Route path='/ver/crema/:id' element={<VerCremaId />} />
+          <Route path='/edit/frozen/:id' element={<EditarFrozenPage />} />
+          <Route path='/ver/frozen/:id' element={<VerFrozenId />} />
 
         </Route>
       </Routes>

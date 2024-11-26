@@ -1,5 +1,4 @@
 import criollosRegionales from "../images/Foto_Criollos_Regionales.png";
-import popularesJuane from "../images/Foto_Populares_Juane.png";
 import Carrusel from '../util/Carrusel';
 import usePasoFresa from "../hooks/usePasoFresa";
 import { useEffect, useState } from "react";
@@ -7,16 +6,23 @@ import { useEffect, useState } from "react";
 const HomePage = () => {
     const { fetchProductCrema } = usePasoFresa()
 
-    const [porductCrema, setProductCrema] = useState([])
+    const [productCrema, setProductCrema] = useState([])
 
     useEffect(() => {
         fetchProductCrema()
             .then(data => setProductCrema(data))
     }, [])
+    const { fetchProductFrozen } = usePasoFresa()
+
+    const [productFrozen, setProductFrozen] = useState([])
+
+    useEffect(() => {
+        fetchProductFrozen()
+            .then(data => setProductFrozen(data))
+    }, [])
 
     return (
         <section className='place-items-center h-full p-6'>
-            {/* <div>{JSON.stringify(porductCrema)}</div> */}
             <section className='w-full mt-4 mb-4 bg-green-200 p-6 rounded-xl'>
                 <div>
                     <h2 className='text-2xl text-center font-bold mb-4'>¿Quienes Somos?</h2>
@@ -59,9 +65,9 @@ const HomePage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {porductCrema.map(productCrema => {
+                                {productCrema.map(productCrema => {
                                     return (
-                                        <tr key = {productCrema.docID}>
+                                        <tr key = {productCrema.docId}>
                                             <td className='border border-black px-2'>{productCrema.name}</td>
                                             <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productCrema.priceSmall).toFixed(2)}</td>
                                             <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productCrema.priceMedium).toFixed(2)}</td>
@@ -71,30 +77,6 @@ const HomePage = () => {
                                 })}
                             </tbody>
                         </table>
-                        {/* <div className='flex place-content-between'>
-                            <p>Fresa + Crema de Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa Glaseada + Crema <br /> de Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa Durazno + Crema <br /> de Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa Maracuya + Crema <br /> de Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa con Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa Oreo + Crema <br /> de Leche</p>
-                            <span>S/ 8.00, 10.00, 15.00</span>
-                        </div> */}
                     </div>
                     <div className='bg-sky-200 w-full rounded-xl p-3 content-center md:w-96 md:flex-grow'>
                         <h3 className='font-bold text-center'>FROZEN</h3>
@@ -108,46 +90,18 @@ const HomePage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {usuarios.map(usuarios => { */}
-                                    {/* return ( */}
-                                        <tr>
-                                            <td className='border border-black px-2'>Crema Fresa</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/8.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/12.00</td>
-                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/15.00</td>
+                                {productFrozen.map(productFrozen => {
+                                    return (
+                                        <tr key = {productFrozen.docId}>
+                                            <td className='border border-black px-2'>{productFrozen.name}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productFrozen.priceSmall).toFixed(2)}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productFrozen.priceMedium).toFixed(2)}</td>
+                                            <td className='w-20 border border-black px-2 text-center md:w-20'>S/{parseFloat(productFrozen.priceBig).toFixed(2)}</td>
                                         </tr>
-                                    {/* ) */}
-                                {/* })} */}
+                                    )
+                                })}
                             </tbody>
                         </table>
-                        {/* <div className='flex place-content-between'>
-                            <p>Frozen Limón Fresa</p>
-                            <span>S/ 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frozen de Fresa</p>
-                            <span>S/ 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Fresa Piña Durazno</p>
-                            <span>S/ 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frozen Fresa + Leche</p>
-                            <span>S/ 10.00, 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frozen de Lúcuma</p>
-                            <span>S/ 12.00, 18.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frozen de Maracuya</p>
-                            <span>S/ 12.00, 18.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frozen de Coco</p>
-                            <span>S/ 12.00, 18.00</span>
-                        </div> */}                 
                     </div>
                     {/* <div className='hidden bg-green-200 w-full rounded-xl p-3 content-center'>
                         <h3 className='font-bold'>TÉ CHINO</h3>
