@@ -234,7 +234,7 @@ const AdminPage = () => {
               </div>
             </div>
         </section>
-        <section className='my-4 mx-6 py-4'>
+        <section className='mt-4 mx-6 py-4'>
             <h1 className='font-bold text-center text-3xl py-2 w-full bg-slate-100 border-black rounded-xl'>
                 GESTIÓN DE PRODUCTOS
             </h1>
@@ -399,6 +399,17 @@ const AdminPage = () => {
                 </div>
               </div>
             </div>
+        </section >
+        <section className='mb-6 mx-6 border-2 border-black rounded-xl bg-white'>
+          <div className='p-6 bg-slate-500 flex justify-between items-center'>
+            <h2 className='text-center font-extrabold text-white text-2xl'>Gestión de Clientes</h2>
+            <Link to={ '/gestionCliente' }>
+              <button className='ring-2 ring-slate-200 bg-blue-500 px-4 py-2 text-white font-extrabold rounded-xl'>
+                Acceder a Clientes
+              </button>
+            </Link>
+            
+          </div>
         </section>
     </>
   )

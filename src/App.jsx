@@ -10,10 +10,13 @@ import AdminPage from './pages/AdminPage'
 import EditarCremaPage from './components/EditarCremaPage'
 import EditarFrozenPage from './components/EditarFrozenPage'
 import EditarFresaPage from './components/EditarFesaPage'
+import EditarClientePage from './components/EditarClientePage'
 import VerCremaId from './pages/VerCremaId'
 import VerFrozenId from './pages/VerFrozenId'
 import VerFresaId from './pages/VerFresaId'
+import VerClienteId from './pages/VerClienteId'
 import { Toaster } from 'sonner'
+import GestionClientes from './pages/GestionClientes'
 
 const App = () => {
   return (
@@ -34,6 +37,10 @@ const App = () => {
           <Route path='/ver/frozen/:id' element={<VerFrozenId />} />
           <Route path='/edit/fresa/:id' element={<EditarFresaPage />} />
           <Route path='/ver/fresa/:id' element={<VerFresaId />} />
+          <Route path='/gestionCliente' element={<GestionClientes />} />
+          <Route path='/edit/cliente/:id' element={<EditarClientePage />} />
+          <Route path='/ver/cliente/:id' element={<VerClienteId />} />
+          
 
         </Route>
       </Routes>

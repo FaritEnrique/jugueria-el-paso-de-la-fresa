@@ -192,6 +192,20 @@ export const usePasoFresa = () => {
 
     const refCliente = collection(db, 'cliente')
 
+    const fetchCliente = async () => {
+        const qCliente = query(refCliente)
+        const dataCliente = await getDocs(qCliente)
+        const resultsCliente = []
+        dataCliente.forEach(doc => {
+            console.log(doc.id, doc.data())
+            resultsCliente.push({
+                docId: doc.id,
+                ...doc.data() // Representa el documento actual
+            })
+        })
+        return resultsCliente
+    }
+
     const crearCliente = async (cliente) => {
         const newCliente = {
             dni: cliente.dni,
@@ -207,6 +221,37 @@ export const usePasoFresa = () => {
             newCliente
         }
     }
+
+    const removeCliente = async (id) => {
+        const documentCliente = doc (refCliente, id)
+
+        await deleteDoc(documentCliente)
+
+        return { success: true, id }
+    }
+
+    const obtenerCliente = async (id) => {
+        const documentObtenerCliente = doc(refCliente, id)
+
+        const cliente = await getDoc(documentObtenerCliente)
+
+        /* console.log(crema.data()) */
+
+        return cliente.data()
+    }
+
+    const editarCliente = async (form, id) => {
+
+        const documentEditarCliente = doc(refCliente, id)
+
+        const clienteModificada = await updateDoc(documentEditarCliente, form)
+        
+        return {
+            "success": true,
+            "message": "Producto editado correctamente"
+        }
+    }
+
 
     return {
         fetchProductCrema,
@@ -224,7 +269,11 @@ export const usePasoFresa = () => {
         removeFresa,
         obtenerFresa,
         editarFresa,
-        crearCliente
+        fetchCliente,
+        crearCliente,
+        removeCliente,
+        obtenerCliente,
+        editarCliente,
     }
 
 }

@@ -47,6 +47,11 @@ const HomePage = () => {
                     </p>
                 </div>
             </section>
+            <section className="w-full">
+                <div className="bg-gray-300 flex">
+                    <img className="flex-grow rounded-2xl" src="https://i.ibb.co/k5HY5K8/VENTA-DE-FRESA.png" alt="Banner de Venta de Fresas" />
+                </div>
+            </section>
             <section className='w-full p-2 mt-4 mb-4 rounded-xl place-items-center'>
                 <Carrusel />
             </section>
@@ -55,7 +60,7 @@ const HomePage = () => {
                     <img src="https://i.ibb.co/8sfdz5T/Propiedades-Fresa.png" alt="Propiedades de la Fresa" />
                 </div>
                 <div className="w-full p-2 rounded-xl place-items-center">
-                    <img src="https://i.ibb.co/ydwtzVQ/Ubicar-Fresas.png" alt="Imagen sugerir encontrar fresas" />
+                    <img src="https://i.ibb.co/gmKh2hF/Paso-Fresa-Solucion.png" alt="Imagen sugerir encontrar fresas" />
                 </div>
             </section>
             <section style={{backgroundImage: 'url(https://i.ibb.co/bHgyYXR/Foto-Jugos.png)'}} className='bg-no-repeat bg-cover bg-center mb-4 py-6 px-2 w-full rounded-xl'>
@@ -113,43 +118,16 @@ const HomePage = () => {
                             </tbody>
                         </table>
                     </div>
-                    {/* <div className='hidden bg-green-200 w-full rounded-xl p-3 content-center'>
-                        <h3 className='font-bold'>TÉ CHINO</h3>
-                        <div className='flex place-content-between'>
-                            <p>Té Jazmín + Limón</p>
-                            <span>S/ 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Té + Leche</p>
-                            <span>S/ 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Pulpa Fruta</p>
-                            <span>S/ 15.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Leche Coco con Fruta</p>
-                            <span>S/ 18.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Frappe + Frutas</p>
-                            <span>S/ 18.00</span>
-                        </div>
-                    </div> */}
                 </div>
             </section>
-            <section className="w-full">
-                <div className="bg-gray-300 flex">
-                    <img className="flex-grow rounded-2xl" src="https://i.ibb.co/k5HY5K8/VENTA-DE-FRESA.png" alt="Banner de Venta de Fresas" />
-                </div>
-            </section>
+            
             <section className='bg-orange-400 mt-4 mb-4 p-6 w-full rounded-xl'>
                 <div>
                     <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
                 </div>
                 <br />
                 <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover rounded-xl p-4">
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 mx-auto rounded-xl w-full bg-white '>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 mx-auto rounded-xl w-full '>
                         {productFresa.map(productFresa => {
                             return(
                                 <div key={productFresa.docId} className="w-full border-2 border-gray-200 rounded-lg flex flex-col
@@ -170,83 +148,6 @@ const HomePage = () => {
                             )
                         })}
                     </div>
-                    
-                    {/* <div style={{backgroundImage: 'url(https://i.ibb.co/nsP4vT0/Fondo-Criollos.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl text-black font-bold w-2/4'>
-                        <div className='bg-slate-500 bg-opacity-60 p-2'>
-                            <h3 className='font-extrabold'>Sanguches Criollos</h3>
-                            <div className='flex place-content-between'>
-                                <p>Pollo Deshilachado</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Pavo Horneado</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Lechón Horneado</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Jamón y Queso</p>
-                                <span>S/ 10.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Lomito Ahumado</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Chicharrón</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                            <div className='flex place-content-between'>
-                                <p>Crossain Jam + Queso</p>
-                                <span>S/ 12.00</span>
-                            </div>
-                            <br />
-                            <h3 className='font-extrabold'>Comida Regional</h3>
-                            <div className='flex place-content-between'>
-                                <p>Cecina + Tacacho</p>
-                                <span>S/ 15.00</span>
-                            </div>
-                        </div>
-                        <div className='m-4 place-items-center'>
-                            <img src= {criollosRegionales} alt="Foto de Platos Criollos y Regionales" className='rounded-lg border-2'/>
-                        </div>
-                        <div className='mb-4 place-items-center'>
-                            <img src={cremas} alt="" />
-                        </div>
-                    </div>
-                    <div style={{backgroundImage: 'url(https://i.ibb.co/pKyK58K/Fondo-Populares.png)'}} className='bg-no-repeat bg-cover p-4 rounded-xl w-2/4 text-cyan-200 font-bold'>
-                        <h3 className='font-extrabold'>Sanguches Populares</h3>
-                        <div className='flex place-content-between'>
-                            <p>Huevo</p>
-                            <span>S/ 4.00</span>
-                        </div>
-                        <h3 className='font-extrabold'>Variados</h3>
-                        <div className='flex place-content-between'>
-                            <p>Empanadas</p>
-                            <span>S/ 5.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Keke</p>
-                            <span>S/ 3.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Juane</p>
-                            <span>S/ 10.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Pan al Ajo</p>
-                            <span>S/ 4.00</span>
-                        </div>
-                        <div className='flex place-content-between'>
-                            <p>Tostadas</p>
-                            <span>S/ 2.00</span>
-                        </div>
-                        <div className='m-4 place-items-center'>
-                            <img src= {popularesJuane} alt="Foto de Platos Criollos y Regionales" className='rounded-lg border-2'/>
-                        </div>
-                    </div> */}
                 </div>
             </section>
         </section>
