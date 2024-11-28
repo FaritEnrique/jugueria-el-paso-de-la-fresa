@@ -32,7 +32,7 @@ const Header = () => {
 
     return (
         <>
-            <header className='w-full bg-orange-400 py-2 px-6'>
+            <header className='w-full bg-red-500 py-2 px-6'>
                 <div className='container mx-auto flex justify-between items-center mb-2'>
                     <div className='max-w-full'>
                         <Link to='/' >

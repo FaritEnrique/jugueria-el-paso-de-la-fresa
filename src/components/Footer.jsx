@@ -9,7 +9,7 @@ import ModalUbicacion from './ModalUbicacion';
 const Footer = () => {
   return (
     <>
-        <footer className='w-full bg-orange-400 p-2'>
+        <footer className='w-full bg-red-500 p-2'>
             <div className='flex flex-wrap w-full py-4 px-4 gap-2 justify-between'>
                 <div className='bg-white p-4 rounded-xl w-full sm:w-72 sm:flex-grow md:min-w-80 md:flex-grow'>
                     <h3 className='font-bold'>Contáctanos</h3>

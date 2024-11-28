@@ -33,7 +33,7 @@ const HomePage = () => {
 
     return (
         <section className='place-items-center h-full p-6'>
-            <section className='w-full mt-4 mb-4 bg-green-200 p-6 rounded-xl'>
+            <section className='w-full mt-4 mb-4 bg-green-50 p-6 rounded-xl border-2 border-gray-400'>
                 <div>
                     <h2 className='text-2xl text-center font-bold mb-4'>¿Quienes Somos?</h2>
                 </div>
@@ -121,9 +121,9 @@ const HomePage = () => {
                 </div>
             </section>
             
-            <section className='bg-orange-400 mt-4 mb-4 p-6 w-full rounded-xl'>
+            <section className='bg-red-500 mt-4 mb-4 p-6 w-full rounded-xl'>
                 <div>
-                    <h2 className='w-full bg-red-600 text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
+                    <h2 className='w-full bg-white text-center font-bold text-2xl rounded-xl'>Venta de Fresas</h2>
                 </div>
                 <br />
                 <div style={{backgroundImage: 'url(https://i.ibb.co/99M8wmd/Fondo-Infusiones.png)'}} className="bg-no-repeat bg-cover rounded-xl p-4">
